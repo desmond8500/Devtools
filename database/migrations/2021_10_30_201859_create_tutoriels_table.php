@@ -15,6 +15,9 @@ class CreateTutorielsTable extends Migration
     {
         Schema::create('tutoriels', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('folder')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

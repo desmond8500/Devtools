@@ -31,7 +31,7 @@
 <body>
 
     @livewire('tutos.navbar')
-    <div class="row container">
+    <div class="container">
         @yield('content')
     </div>
 

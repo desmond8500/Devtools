@@ -1,5 +1,5 @@
 <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">Tutoriels</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -20,6 +20,9 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <div wire:loading class="my-2">
+                          <div class="spinner-border" role="status"></div>
+                        </div>
                         <a class="nav-link active" type="button" aria-current="page" wire:click="init">Init</a>
                     </li>
                 </ul>

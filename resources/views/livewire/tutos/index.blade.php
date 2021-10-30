@@ -1,25 +1,21 @@
 <div>
     <link rel="stylesheet" href="{{ asset('bt/css/tuto.css') }}">
-    @if ($folder)
-        <h3 class="text-light">{{ ucfirst($folder) }}</h3>
-    @else
-        <h3 class="text-light">Tutoriels</h3>
-    @endif
 
     <div class="row">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    @if ($md)
-                        @parsedown($parsed)
-                    @endif
+                    @parsedown($file)
                 </div>
             </div>
         </div>
         <div class="col-md-3">
+            @foreach ($tags as $tag)
+                <a class="btn btn-sm btn-outline-light mb-1 @if($categorie==$tag->name) active @endif " wire:click="$set('categorie','{{ $tag->name }}')" >{{ ucfirst($tag->name) }}</a>
+            @endforeach
             <div class="list-group">
-                @foreach ($files as $file)
-                    <a href="{{ route('index',["folder"=>$folder, "md"=>basename($file)]) }}" class="list-group-item list-group-item-action">{{ basename($file) }}</a>
+                @foreach ($list as $item)
+                    <a href="{{ route("index", ["file_id"=>$item->id, "categorie"=>$categorie]) }}" type="button" class="list-group-item list-group-item-action @if($file_id==$item->id) active @endif">{{ $item->name }}</a>
                 @endforeach
             </div>
 

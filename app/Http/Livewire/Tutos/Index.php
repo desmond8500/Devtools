@@ -2,38 +2,39 @@
 
 namespace App\Http\Livewire\Tutos;
 
+use App\Models\Tutoriel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Spatie\Tags\Tag;
 
 class Index extends Component
 {
-    public $folder, $files, $md, $subfolders;
+    public $file, $file_id, $categorie;
 
-    public function mount($folder = null, $md=null)
+    public function mount($file_id=null, $categorie=null)
     {
-        $this->folder = $folder;
-        $this->md = $md;
+        $this->file_id = $file_id;
+        $this->categorie = $categorie;
+        $this->getFile();
     }
     public function render()
     {
         return view('livewire.tutos.index',[
-            "files" => $this->getFiles(),
-            "parsed" => $this->parsed(),
-            "subfolders" => $this->subfolders,
+            "list" => Tutoriel::withAnyTags($this->categorie)->get(),
+            "tags" => Tag::all(),
+            "file" => $this->file,
         ])->extends('tutos.layout')->section('content');
     }
 
-    public function getFiles()
+    public function getFile()
     {
-        $this->files = Storage::disk("tutos")->files("$this->folder");
-    }
-    public function parsed()
-    {
-        if ($this->folder && $this->md) {
-            return file_get_contents("tutos/$this->folder/$this->md");
-        }else {
-            return null;
+        if ($this->file_id) {
+            $file = Tutoriel::find($this->file_id);
+            $content = file_get_contents("tutos/$file->folder");
+            $this->file = $content;
+        }else{
+            $this->file = null;
         }
     }
 }
