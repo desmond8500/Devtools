@@ -1,3 +1,0 @@
-# CMS
-
-* [Odoo](cms/odoo)
