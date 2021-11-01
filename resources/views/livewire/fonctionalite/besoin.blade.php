@@ -64,14 +64,15 @@
                                         </div>
                                     @endif
                                     <hr>
-                                    @foreach ($besoin->scenarios as $scenario)
-                                        @if ($loop->first)
-                                            <div class="col-md-6">
+
+                                    <div class="col-md-6">
+                                        @foreach ($besoin->scenarios as $scenario)
+                                            @if ($loop->first)
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Scénario nominal</th>
+                                                            <th scope="col">Scénario Nominal</th>
                                                             <th scope="col">
                                                                 <button type="button" class="btn btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
                                                                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -81,32 +82,40 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($scenario->etapes as $key => $etape)
-                                                            <tr>
-                                                                <th scope="row">{{ $key+1 }}</th>
-                                                                <td colspan="2" class="d-flex justify-content-between">
-                                                                    @if ($etape->id == $etape_id)
-                                                                        <div>
-                                                                            <input type="text" wire:model="etape_description" class="form-control">
-                                                                        </div>
-                                                                        <div >
-                                                                            <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                                                            <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                                                            <span class="text-primary" title="Créer un scénario alternatif" wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                                                                        </div>
-                                                                    @else
-                                                                        <div>{{ $etape->description }}</div>
-                                                                        <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit" aria-hidden="true"></i></div>
-                                                                    @endif
+                                                        <tr>
+                                                            <th scope="row">{{ $key+1 }}</th>
+                                                            <td colspan="2" class="d-flex justify-content-between">
+                                                                @if ($etape->id == $etape_id)
+                                                                <div>
+                                                                    <input type="text" wire:model="etape_description" class="form-control">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check"
+                                                                            aria-hidden="true"></i></span>
+                                                                    <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash"
+                                                                            aria-hidden="true"></i></span>
+                                                                    <span class="text-primary" title="Créer un scénario alternatif"
+                                                                        wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right"
+                                                                            aria-hidden="true"></i></span>
+                                                                </div>
+                                                                @else
+                                                                <div>{{ $etape->description }}</div>
+                                                                <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit"
+                                                                        aria-hidden="true"></i></div>
+                                                                @endif
 
-                                                                </td>
-                                                            </tr>
+                                                            </td>
+                                                        </tr>
 
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        @else
-                                            <div class="col-md-6">
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="col-md-6">
+                                        @foreach ($besoin->scenarios as $scenario)
+                                            @if (!$loop->first)
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
@@ -143,18 +152,11 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        @endif
-                                    @endforeach
-
-                                    <div class="col-md-6">
-
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
-
-
                             </div>
-
                             @endif
                         </div>
                     </div>
