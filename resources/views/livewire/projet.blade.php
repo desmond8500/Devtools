@@ -19,9 +19,10 @@
             </div>
         </div>
     @else
-        <div class="d-flex">
-            <h3 >{{ $projet->name }}</h3> <i wire:click='edit' class="fa fa-edit p-1" aria-hidden="true"></i>
+        <div class="d-flex text-white">
+            <h3 class="">{{ $projet->name }}</h3> <i wire:click='edit' class="fa fa-edit p-1" aria-hidden="true"></i>
         </div>
+        <p class="text-white">{{ $projet->description }}</p>
     @endif
 
     @livewire('fonctionalite.besoin',['projet'=>$projet])

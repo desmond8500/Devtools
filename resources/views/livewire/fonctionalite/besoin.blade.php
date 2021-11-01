@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-12 mb-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fonctionalite">
-                    Ajouter une fonctionalité
-                </button>
+                <div class="d-flex flex-row-reverse">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fonctionalite">
+                        Ajouter une fonctionalité
+                    </button>
+                </div>
             </div>
         </div>
         <div class="col-md-12">
