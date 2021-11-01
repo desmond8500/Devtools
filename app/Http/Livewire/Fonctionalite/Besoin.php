@@ -91,7 +91,7 @@ class Besoin extends Component
 
         $etape->save();
 
-        $this->reset('etape_id');
+        $this->reset('etape_id', 'etape_description');
     }
     public function delete_etape(){
         $etape = Etape::find($this->etape_id);
