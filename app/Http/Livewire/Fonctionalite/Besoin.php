@@ -24,7 +24,7 @@ class Besoin extends Component
     }
     // Besoin
     public $name, $acteur, $fonctionalite, $prerequis, $description;
-    public $selected=0;
+    public $selected=0, $besoin_id=0;
     public function store()
     {
         $besoin = ModelsBesoinFonctionel::create([
@@ -47,11 +47,17 @@ class Besoin extends Component
         $this->besoin_id = $id;
         $besoin = ModelsBesoinFonctionel::find($id);
         $this->name = $besoin->name;
+        $this->acteur = $besoin->acteur;
+        $this->prerequis = $besoin->prerequis;
+        $this->description = $besoin->description;
     }
     public function update()
     {
         $besoin = ModelsBesoinFonctionel::find($this->besoin_id);
         $besoin->name = $this->name;
+        $besoin->acteur = $this->acteur;
+        $besoin->prerequis = $this->prerequis;
+        $besoin->description = $this->description;
 
         $besoin->save();
 

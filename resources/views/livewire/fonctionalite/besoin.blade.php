@@ -15,25 +15,54 @@
                 @forelse ($besoins as $besoin)
                     <div class="accordion-item">
                         <h2 class="accordion-header accordion-button" wire:click="$set('selected',{{ $besoin->id }})">
-                            {{-- <button class="accordion-button" type="button" > --}}
                                 <b>{{ $besoin->name }}</b>
-                            {{-- </button> --}}
                         </h2>
                         <div class=" ">
                             @if ($selected==$besoin->id)
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <b>Acteurs :</b> {{ $besoin->acteur }}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Description</b>
-                                        <p>{{ $besoin->description }}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Prérequis</b>
-                                        {{ $besoin->prerequis }}
-                                    </div>
+                                    @if ($besoin_id == $besoin->id)
+                                        <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nom de la fonctinalité</label>
+                                                    <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Acteurs</label>
+                                                    <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Prérequis</label>
+                                                    <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
+                                                        rows="3"></textarea>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <button class="btn btn-primary" wire:click="update">Modifier</button>
+                                                    <button class="btn btn-danger" wire:click="delete">Supprimer</button>
+                                                    <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
+
+                                                </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-11">
+                                            <b>Acteurs :</b> {{ $besoin->acteur }}
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <b>Description</b>
+                                            <p>{{ $besoin->description }}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <b>Prérequis</b>
+                                            <p>{{ $besoin->prerequis }}</p>
+                                        </div>
+                                    @endif
                                     <hr>
                                     @foreach ($besoin->scenarios as $scenario)
                                         @if ($loop->first)
