@@ -24,7 +24,7 @@ class Besoin extends Component
     }
     // Besoin
     public $name, $acteur, $fonctionalite, $prerequis, $description;
-
+    public $selected=0;
     public function store()
     {
         $besoin = ModelsBesoinFonctionel::create([
@@ -67,13 +67,16 @@ class Besoin extends Component
 
     public function store_etape($id)
     {
-        Etape::create([
+        $etape = Etape::create([
             'scenario_id' => $id,
             'ordre' => $this->ordre,
             'description' => $this->etape_description,
         ]);
 
-        // $this->reset('name');
+        $etape->ordre = $etape->id;
+        $etape->save();
+
+        $this->reset('etape_description');
     }
     public function edit_etape($id)
     {
@@ -95,5 +98,34 @@ class Besoin extends Component
         $etape->delete();
     }
 
-    //
+    // Scenario
+
+    public function store_scenario($etape, $besoin)
+    {
+        Scenario::create([
+            'besoin_id' => $besoin,
+            'type' => $etape,
+        ]);
+
+        // $this->reset('name');
+    }
+    public function edit_scenario($id)
+    {
+        $this->instance_id = $id;
+        $instance = Scenario::find($id);
+        $this->name = $instance->name;
+    }
+    public function update_scenario()
+    {
+        $instance = Scenario::find($this->instance_id);
+        $instance->name = $this->name;
+
+        $instance->save();
+
+        $this->reset('instance_id');
+    }
+    public function delete_scenario(){
+        $instance = Scenario::find($this->instance_id);
+        $instance->delete();
+    }
 }

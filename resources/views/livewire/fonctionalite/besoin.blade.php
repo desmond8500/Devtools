@@ -12,12 +12,13 @@
 
                 @forelse ($besoins as $besoin)
                     <div class="accordion-item ">
-                        <h2 class="accordion-header" id="besoin{{ $besoin->id }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"  data-bs-target="#flush-{{ $besoin->id }}" aria-expanded="false" aria-controls="flush-{{ $besoin->id }}">
+                        <h2 class="accordion-header" >
+                            <button class="accordion-button" type="button" wire:click="$set('selected',{{ $besoin->id }})">
                                 {{ $besoin->name }}
                             </button>
                         </h2>
-                        <div id="flush-{{ $besoin->id }}" class="accordion-collapse collapse" aria-labelledby="besoin{{ $besoin->id }}" data-bs-parent="#accordionFlushExample">
+                        <div class=" ">
+                            @if ($selected==$besoin->id)
                             <div class="accordion-body">
                                 <div class="row">
                                     @foreach ($besoin->scenarios as $scenario)
@@ -39,15 +40,19 @@
                                                         @foreach ($scenario->etapes as $key => $etape)
                                                             <tr>
                                                                 <th scope="row">{{ $key+1 }}</th>
-                                                                <td class="d-flex justify-content-between">
-                                                                    @if (!$etape->id == $etape_id)
-                                                                        <div>{{ $etape->description }}</div>
-                                                                        <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit" aria-hidden="true"></i></div>
-                                                                        @elseif($etape->id == $etape_id)
+                                                                <td colspan="2" class="d-flex justify-content-between">
+                                                                    @if ($etape->id == $etape_id)
                                                                         <div>
                                                                             <input type="text" wire:model="etape_description" class="form-control">
                                                                         </div>
-                                                                        <div class="text-success" wire:click="update_etape"><i class="fa fa-check" aria-hidden="true"></i></div>
+                                                                        <div >
+                                                                            <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                                            <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                                                            <span class="text-primary" title="Créer un scénario alternatif" wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    @else
+                                                                        <div>{{ $etape->description }}</div>
+                                                                        <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit" aria-hidden="true"></i></div>
                                                                     @endif
 
                                                                 </td>
@@ -56,9 +61,46 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-
                                             </div>
+                                        @else
+                                            <div class="col-md-6">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Scénario Alternatif Etape {{ $scenario->type }}</th>
+                                                            <th scope="col">
+                                                                <button type="button" class="btn btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
+                                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                                </button>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($scenario->etapes as $key => $etape)
+                                                            <tr>
+                                                                <th scope="row">{{ $key+1 }}</th>
+                                                                <td colspan="2" class="d-flex justify-content-between">
+                                                                    @if ($etape->id == $etape_id)
+                                                                        <div>
+                                                                            <input type="text" wire:model="etape_description" class="form-control">
+                                                                        </div>
+                                                                        <div >
+                                                                            <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                                            <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    @else
+                                                                        <div>{{ $etape->description }}</div>
+                                                                        <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit" aria-hidden="true"></i></div>
+                                                                    @endif
 
+                                                                </td>
+                                                            </tr>
+
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         @endif
                                     @endforeach
 
@@ -69,6 +111,8 @@
 
 
                             </div>
+
+                            @endif
                         </div>
                     </div>
                 @empty
