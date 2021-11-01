@@ -11,16 +11,28 @@
             <div class="accordion accordion-flush" id="accordionFlushExample">
 
                 @forelse ($besoins as $besoin)
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header" >
-                            <button class="accordion-button" type="button" wire:click="$set('selected',{{ $besoin->id }})">
-                                {{ $besoin->name }}
-                            </button>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header accordion-button" wire:click="$set('selected',{{ $besoin->id }})">
+                            {{-- <button class="accordion-button" type="button" > --}}
+                                <b>{{ $besoin->name }}</b>
+                            {{-- </button> --}}
                         </h2>
                         <div class=" ">
                             @if ($selected==$besoin->id)
                             <div class="accordion-body">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <b>Acteurs :</b> {{ $besoin->acteur }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Description</b>
+                                        <p>{{ $besoin->description }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Prérequis</b>
+                                        {{ $besoin->prerequis }}
+                                    </div>
+                                    <hr>
                                     @foreach ($besoin->scenarios as $scenario)
                                         @if ($loop->first)
                                             <div class="col-md-6">
