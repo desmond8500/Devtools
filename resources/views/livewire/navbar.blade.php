@@ -1,42 +1,88 @@
-<div class="mb-2">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('index') }}">Devtools</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<div class="sticky-top">
+    <header class="navbar navbar-expand-md navbar-dark d-print-none">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route("projets") }}">Projets</a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li> --}}
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                <a href="{{ route($index->route) }}">
+                    {{ $index->name }}
+                </a>
+            </h1>
+            <div class="navbar-nav flex-row order-md-last">
+                {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                        aria-label="Show notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                            <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                        </svg>
+                        <span class="badge bg-red"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                        <div class="card">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad amet consectetur
+                                exercitationem fugiat in ipsa ipsum, natus odio quidem quod repudiandae sapiente. Amet
+                                debitis et magni maxime necessitatibus ullam.
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="nav-item dropdown">
+                    @if ($user)
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                        aria-label="Open user menu">
+                        <span class="avatar avatar-sm" style="background-image: url({{ asset(" storage/$user->avatar")
+                            }})"></span>
+                        <div class="d-none d-xl-block ps-2">
+                            <div>{{ $user->name }}</div>
+                            @if ($user->fonction)
+                            <div class="mt-1 small text-muted">{{ $user->fonction }}</div>
+                            @endif
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="{{ route('tabler.config.profile') }}" class="dropdown-item">Profile & Compte</a>
+                        <a href="{{ route('tabler.user.cv') }}" class="dropdown-item">CV</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item">Déconnexion</a>
+                    </div>
+                    @else
+                    <button class="btn btn-primary" wire:click="">Connexion</button>
+                    @endif
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+                    <ul class="navbar-nav">
+                        @foreach ($menus as $menu)
+                        @can($menu->can)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+                                role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    {!! $menu->icon !!}
+                                </span>
+                                <span class="nav-link-title"> {{ $menu->name }} </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                @foreach ($menu->submenu as $submenu)
+                                <a class="dropdown-item" href="{{ route($submenu->route) }}">
+                                    {{ $submenu->name }}
+                                </a>
+                                @endforeach
+                            </div>
+                        </li>
+                        @endcan
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 </div>

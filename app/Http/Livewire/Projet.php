@@ -17,7 +17,7 @@ class Projet extends Component
     {
         return view('livewire.projet',[
             'projet' => ModelsProjet::find($this->projet_id),
-        ])->extends('layout')->section('content');
+        ]);
     }
 
     // Projet

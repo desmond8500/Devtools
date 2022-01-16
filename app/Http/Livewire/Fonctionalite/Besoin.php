@@ -130,8 +130,8 @@ class Besoin extends Component
 
         $this->reset('instance_id');
     }
-    public function delete_scenario(){
-        $instance = Scenario::find($this->instance_id);
+    public function delete_scenario($id){
+        $instance = Scenario::find($id);
         $instance->delete();
     }
 }

@@ -1,171 +1,248 @@
 <div>
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-12 mb-3">
-                <div class="d-flex flex-row-reverse">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fonctionalite">
-                        Ajouter une fonctionalité
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-
-                @forelse ($besoins as $besoin)
-                    <div class="accordion-item">
-                        <h2 class="accordion-header accordion-button" wire:click="$set('selected',{{ $besoin->id }})">
-                                <b>{{ $besoin->name }}</b>
-                        </h2>
-                        <div class=" ">
-                            @if ($selected==$besoin->id)
-                            <div class="accordion-body">
-                                <div class="row">
-                                    @if ($besoin_id == $besoin->id)
-                                        <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nom de la fonctinalité</label>
-                                                    <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Acteurs</label>
-                                                    <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Prérequis</label>
-                                                    <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Description</label>
-                                                    <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
-                                                        rows="3"></textarea>
-                                                </div>
-                                                <div class="mb-2">
-                                                    <button class="btn btn-primary" wire:click="update">Modifier</button>
-                                                    <button class="btn btn-danger" wire:click="delete">Supprimer</button>
-                                                    <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
-
-                                                </div>
-                                        </div>
-                                    @else
-                                        <div class="col-md-11">
-                                            <b>Acteurs :</b> {{ $besoin->acteur }}
-                                        </div>
-                                        <div class="col-md-1">
-                                            <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <b>Description</b>
-                                            <p>{{ $besoin->description }}</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <b>Prérequis</b>
-                                            <p>{{ $besoin->prerequis }}</p>
-                                        </div>
-                                    @endif
-                                    <hr>
-
+            @forelse ($besoins as $besoin)
+                <div class="card mb-2">
+                    <div class="card-header">
+                        <h3>{{ $besoin->name }}</h3>
+                        <div class="card-actions">
+                            <button class="btn btn-icon btn-primary" wire:click="$set('selected',{{ $besoin->id }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        @if ($selected==$besoin->id)
+                        <div class="accordion-body">
+                            <div class="row">
+                                @if ($besoin_id == $besoin->id)
                                     <div class="col-md-6">
-                                        @foreach ($besoin->scenarios as $scenario)
-                                            @if ($loop->first)
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Scénario Nominal</th>
-                                                            <th scope="col">
-                                                                <button type="button" class="btn btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
-                                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                                </button>
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($scenario->etapes as $key => $etape)
-                                                        <tr>
-                                                            <th scope="row">{{ $key+1 }}</th>
-                                                            <td colspan="2" class="d-flex justify-content-between">
-                                                                @if ($etape->id == $etape_id)
+                                        <div class="mb-3">
+                                            <label class="form-label">Nom de la fonctinalité</label>
+                                            <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Acteurs</label>
+                                            <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Prérequis</label>
+                                            <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
+                                                rows="3"></textarea>
+                                        </div>
+                                        <div class="mb-2">
+                                            <button class="btn btn-primary" wire:click="update">Modifier</button>
+                                            <button class="btn btn-danger" wire:click="delete">Supprimer</button>
+                                            <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-md-11">
+                                        <b>Acteurs :</b> {{ $besoin->acteur }}
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Description</b>
+                                        <p>{{ $besoin->description }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Prérequis</b>
+                                        <p>{{ $besoin->prerequis }}</p>
+                                    </div>
+                                @endif
+                                <hr>
+
+                                <div class="col-md-6">
+                                    @foreach ($besoin->scenarios as $scenario)
+                                        @if ($loop->first)
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Scénario Nominal</th>
+                                                        <th scope="col" width="20px">
+                                                            <button type="button" class="btn btn-icon btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
+                                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                                </svg>
+                                                            </button>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($scenario->etapes as $key => $etape)
+                                                    <tr>
+                                                        <th scope="row">{{ $key+1 }}</th>
+                                                        <td>
+                                                            @if ($etape->id == $etape_id)
                                                                 <div>
                                                                     <input type="text" wire:model="etape_description" class="form-control">
                                                                 </div>
-                                                                <div>
-                                                                    <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check"
-                                                                            aria-hidden="true"></i></span>
-                                                                    <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash"
-                                                                            aria-hidden="true"></i></span>
-                                                                    <span class="text-primary" title="Créer un scénario alternatif"
-                                                                        wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right"
-                                                                            aria-hidden="true"></i></span>
-                                                                </div>
-                                                                @else
+                                                            @else
                                                                 <div>{{ $etape->description }}</div>
-                                                                <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit"
-                                                                        aria-hidden="true"></i></div>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($etape->id == $etape_id)
+                                                                <div>
+                                                                    <span class="text-success" title="Modifier" wire:click="update_etape">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                            <path d="M5 12l5 5l10 -10"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="text-danger" title="Supprimer" wire:click="delete_etape">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                            <line x1="4" y1="7" x2="20" y2="7"></line>
+                                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="text-primary" title="Créer un scénario alternatif"   wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right"  aria-hidden="true"></i></span>
+                                                                </div>
+                                                            @else
+                                                                <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24"
+                                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                        stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path>
+                                                                        <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path>
+                                                                        <line x1="16" y1="5" x2="19" y2="8"></line>
+                                                                    </svg>
+                                                                </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="col-md-6">
+                                    @foreach ($besoin->scenarios as $scenario)
+                                        @if (!$loop->first)
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Scénario Alternatif Etape {{ $scenario->type }}</th>
+                                                        <th scope="col">
+                                                            <button type="button" class="btn btn-icon btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
+                                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                                </svg>
+                                                            </button>
+                                                            @if (!$scenario->etapes->count())
+                                                            <button type="button" class="btn btn-icon btn-danger" wire:click="delete_scenario('{{ $scenario->id }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <line x1="4" y1="7" x2="20" y2="7"></line>
+                                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                                </svg>
+                                                            </button>
+                                                            @endif
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($scenario->etapes as $key => $etape)
+                                                        <tr>
+                                                            <th scope="row">{{ $key+1 }}</th>
+                                                            <td  class="d-flex justify-content-between">
+                                                                @if ($etape->id == $etape_id)
+                                                                    <div>
+                                                                        <input type="text" wire:model="etape_description" class="form-control">
+                                                                    </div>
+                                                                @else
+                                                                    <div>{{ $etape->description }}qsdsq</div>
                                                                 @endif
-
+                                                            </td>
+                                                            <td>
+                                                                @if ($etape->id == $etape_id)
+                                                                    <div>
+                                                                        <span class="text-success" title="Modifier" wire:click="update_etape">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                                                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                                stroke-linejoin="round">
+                                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                                <path d="M5 12l5 5l10 -10"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <span class="text-danger" title="Supprimer" wire:click="delete_etape">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                                stroke-linejoin="round">
+                                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                                <line x1="4" y1="7" x2="20" y2="7"></line>
+                                                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24"
+                                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                            <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path>
+                                                                            <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path>
+                                                                            <line x1="16" y1="5" x2="19" y2="8"></line>
+                                                                        </svg>
+                                                                    </div>
+                                                                @endif
                                                             </td>
                                                         </tr>
-
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="col-md-6">
-                                        @foreach ($besoin->scenarios as $scenario)
-                                            @if (!$loop->first)
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Scénario Alternatif Etape {{ $scenario->type }}</th>
-                                                            <th scope="col">
-                                                                <button type="button" class="btn btn-primary" wire:click="store_etape('{{ $scenario->id }}')">
-                                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                                </button>
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($scenario->etapes as $key => $etape)
-                                                            <tr>
-                                                                <th scope="row">{{ $key+1 }}</th>
-                                                                <td colspan="2" class="d-flex justify-content-between">
-                                                                    @if ($etape->id == $etape_id)
-                                                                        <div>
-                                                                            <input type="text" wire:model="etape_description" class="form-control">
-                                                                        </div>
-                                                                        <div >
-                                                                            <span class="text-success" title="Modifier" wire:click="update_etape"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                                                            <span class="text-danger" title="Supprimer" wire:click="delete_etape"><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                                                        </div>
-                                                                    @else
-                                                                        <div>{{ $etape->description }}</div>
-                                                                        <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')"><i class="fa fa-edit" aria-hidden="true"></i></div>
-                                                                    @endif
-
-                                                                </td>
-                                                            </tr>
-
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            @endif
-                                        @endforeach
-                                    </div>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
-                            @endif
                         </div>
+                        @endif
                     </div>
-                @empty
-                    Pas de besoin encore
-                @endforelse
-            </div>
-
-
+                </div>
+            @empty
+                Veuillez ajouter un cas d'utilisation
+            @endforelse
         </div>
     </div>
 

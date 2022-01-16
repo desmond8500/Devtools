@@ -15,7 +15,7 @@ class Projets extends Component
     {
         return view('livewire.projets',[
             'projets' => Projet::paginate(12),
-        ])->extends('layout')->section('content');
+        ]);
     }
 
     // Projets
