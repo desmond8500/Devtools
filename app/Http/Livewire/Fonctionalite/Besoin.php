@@ -9,6 +9,13 @@ use Livewire\Component;
 
 class Besoin extends Component
 {
+    protected $paginationTheme = 'bootstrap';
+
+    // public function updatingSearch() {
+    //     $this->resetPage();
+    // }
+    public $search ='';
+
     public $projet;
 
     public function mount($projet)
@@ -19,7 +26,13 @@ class Besoin extends Component
     public function render()
     {
         return view('livewire.fonctionalite.besoin',[
-            'besoins' => ModelsBesoinFonctionel::where('projet_id', $this->projet->id)->get(),
+            // 'besoins' => ModelsBesoinFonctionel::where('name', 'like', '%' . $this->search . '%')->get(),
+            'besoins' => ModelsBesoinFonctionel::where('name', 'like', '%' . $this->search . '%')->where('projet_id', $this->projet->id)->get(),
+
+            // 'besoins' => ModelsBesoinFonctionel::query()
+                // ->where('name', 'like', '%' . $this->search . '%')
+                // ->orwhere('projet_id', $this->projet->id)
+                // ->get(),
         ]);
     }
     // Besoin
