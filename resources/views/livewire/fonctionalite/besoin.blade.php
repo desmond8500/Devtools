@@ -55,11 +55,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <b>Description</b>
-                                        <p>{{ $besoin->description }}</p>
+                                        <p>{!! nl2br($besoin->description) !!}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <b>Prérequis</b>
-                                        <p>{{ $besoin->prerequis }}</p>
+                                        <p>{!! nl2br($besoin->prerequis) !!}</p>
                                     </div>
                                 @endif
                                 <hr>
