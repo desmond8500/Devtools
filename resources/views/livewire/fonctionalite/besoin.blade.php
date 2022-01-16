@@ -13,7 +13,11 @@
             @forelse ($besoins as $besoin)
                 <div class="card mb-2">
                     <div class="card-header">
-                        <h3>{{ $besoin->name }}</h3>
+                        <div>
+                            <h3>{{ $besoin->name }}</h3>
+                            <p>{!! nl2br($besoin->description) !!}</p>
+                        </div>
+
                         <div class="card-actions">
                             <button class="btn btn-icon btn-primary" wire:click="$set('selected',{{ $besoin->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24"
@@ -25,26 +29,26 @@
                                 </svg>
                             </button>
                         </div>
+
                     </div>
                     <div class=" ">
                         @if ($selected==$besoin->id)
                         <div class="accordion-body">
                             <div class="row">
                                 @if ($besoin_id == $besoin->id)
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label">Nom de la fonctinalité</label>
                                             <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label">Acteurs</label>
                                             <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label">Prérequis</label>
                                             <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label class="form-label">Description</label>
                                             <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
                                                 rows="3"></textarea>
@@ -54,7 +58,6 @@
                                             <button class="btn btn-danger" wire:click="delete">Supprimer</button>
                                             <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
                                         </div>
-                                    </div>
                                 @else
                                     <div class="col-md-11">
                                         <b>Acteurs :</b> {{ $besoin->acteur }}
@@ -62,11 +65,11 @@
                                     <div class="col-md-1">
                                         <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <b>Description</b>
                                         <p>{!! nl2br($besoin->description) !!}</p>
-                                    </div>
-                                    <div class="col-md-6">
+                                    </div> --}}
+                                    <div class="col-md-12">
                                         <b>Prérequis</b>
                                         <p>{!! nl2br($besoin->prerequis) !!}</p>
                                     </div>
