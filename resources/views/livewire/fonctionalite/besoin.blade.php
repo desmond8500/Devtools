@@ -48,9 +48,9 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Acteurs</label>
                                         <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
-                                        <div class="btn-list">
+                                        <div class="btn-list mt-1">
                                             @foreach ($acteurs as $item)
-                                                <h2><span class="badge" wire:click="add_actor('{{ $item->name }}')">{{ $item->name }}</span></h2>
+                                                <h4><span class="badge" wire:click="add_actor('{{ $item->name }}')">{{ $item->name }}</span></h4>
                                             @endforeach
                                         </div>
                                     </div>
