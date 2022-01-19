@@ -12,6 +12,7 @@ class BesoinFonctionel extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use \Spatie\Tags\HasTags;
 
     protected $fillable = ['projet_id', 'name', 'acteur', 'prerequis', 'description'];
 

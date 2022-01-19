@@ -1,6 +1,11 @@
 <div>
     <div class="row">
-        <div class="col-md-4 offset-8 mb-3">
+        <div class="col-md-8 mb-3">
+            @foreach ($acteurs as $item)
+                <button class="btn btn-primary">{{ $item->name }}</button>
+            @endforeach
+        </div>
+        <div class="col-md-4 mb-3">
             <div class="input-icon">
                 <span class="input-icon-addon">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
@@ -36,28 +41,33 @@
                         <div class="accordion-body">
                             <div class="row">
                                 @if ($besoin_id == $besoin->id)
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Nom de la fonctinalité</label>
-                                            <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Nom de la fonctinalité</label>
+                                        <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Acteurs</label>
+                                        <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
+                                        <div class="btn-list">
+                                            @foreach ($acteurs as $item)
+                                                <h2><span class="badge" wire:click="add_actor('{{ $item->name }}')">{{ $item->name }}</span></h2>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Acteurs</label>
-                                            <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Prérequis</label>
-                                            <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Description</label>
-                                            <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
-                                                rows="3"></textarea>
-                                        </div>
-                                        <div class="mb-2">
-                                            <button class="btn btn-primary" wire:click="update">Modifier</button>
-                                            <button class="btn btn-danger" wire:click="delete">Supprimer</button>
-                                            <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Prérequis</label>
+                                        <textarea class="form-control" wire:model.defer='prerequis' placeholder="Prérequis du projet" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <div class="mb-2">
+                                        <button class="btn btn-primary" wire:click="update">Modifier</button>
+                                        <button class="btn btn-danger" wire:click="delete">Supprimer</button>
+                                        <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
+                                    </div>
                                 @else
                                     <div class="col-md-11">
                                         <b>Acteurs :</b> {{ $besoin->acteur }}
@@ -200,7 +210,7 @@
                                                                         <input type="text" wire:model="etape_description" class="form-control">
                                                                     </div>
                                                                 @else
-                                                                    <div>{{ $etape->description }}qsdsq</div>
+                                                                    <div>{{ $etape->description }}</div>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -318,3 +328,4 @@
         </div>
     </div>
 </div>
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Fonctionalite;
 
+use App\Models\Acteur;
 use App\Models\BesoinFonctionel as ModelsBesoinFonctionel;
 use App\Models\Etape;
 use App\Models\Scenario;
@@ -26,7 +27,7 @@ class Besoin extends Component
     public function render()
     {
         return view('livewire.fonctionalite.besoin',[
-            // 'besoins' => ModelsBesoinFonctionel::where('name', 'like', '%' . $this->search . '%')->get(),
+            'acteurs' => Acteur::all(),
             'besoins' => ModelsBesoinFonctionel::where('name', 'like', '%' . $this->search . '%')->where('projet_id', $this->projet->id)->get(),
 
             // 'besoins' => ModelsBesoinFonctionel::query()
@@ -37,6 +38,7 @@ class Besoin extends Component
     }
     // Besoin
     public $name, $acteur, $fonctionalite, $prerequis, $description;
+    public $acteur_list = [];
     public $selected=0, $besoin_id=0;
     public function store()
     {
@@ -79,6 +81,11 @@ class Besoin extends Component
     public function delete(){
         $besoin = ModelsBesoinFonctionel::find($this->besoin_id);
         $besoin->delete();
+    }
+
+    public function add_actor($name)
+    {
+        $this->acteur .= " ,$name";
     }
 
     // Etape
