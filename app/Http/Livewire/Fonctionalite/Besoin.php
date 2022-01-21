@@ -4,8 +4,10 @@ namespace App\Http\Livewire\Fonctionalite;
 
 use App\Models\Acteur;
 use App\Models\BesoinFonctionel as ModelsBesoinFonctionel;
+use App\Models\Comment;
 use App\Models\Etape;
 use App\Models\Scenario;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Besoin extends Component
@@ -154,4 +156,50 @@ class Besoin extends Component
         $instance = Scenario::find($id);
         $instance->delete();
     }
+
+    // Commentaires
+
+    public $comment_description;
+    public $comment_id=0, $comment_form=0;
+
+    public function store_comment()
+    {
+        Comment::create([
+            'description' => $this->comment_description,
+            'besoin_id' => $this->besoin_id,
+            'user_id' => Auth::id(),
+        ]);
+
+        $this->reset('description');
+    }
+    public function edit_comment($id)
+    {
+        $this->comment_id = $id;
+        $comment = Comment::find($id);
+        $this->description = $comment->description;
+        $this->name1 = $comment->name1;
+        $this->name2 = $comment->name2;
+        $this->name3 = $comment->name3;
+        $this->name4 = $comment->name4;
+        $this->name5 = $comment->name5;
+    }
+    public function update_comment()
+    {
+        $comment = Comment::find($this->comment_id);
+        $comment->description = $this->description;
+        $comment->name1 = $this->name1;
+        $comment->name2 = $this->name2;
+        $comment->name3 = $this->name3;
+        $comment->name4 = $this->name4;
+        $comment->name5 = $this->name5;
+
+        $comment->save();
+
+        $this->reset('comment_id', 'description', 'name1', 'name2', 'name3', 'name4', 'name5');
+    }
+    public function delete_comment(){
+        $comment = Comment::find($this->comment_id);
+        $comment->delete();
+    }
+
 }

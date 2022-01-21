@@ -25,4 +25,9 @@ class BesoinFonctionel extends Model
     {
         return $this->hasMany(Scenario::class, 'besoin_id');
     }
+
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'besoin_id', 'id');
+    }
 }

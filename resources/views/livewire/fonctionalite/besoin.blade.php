@@ -21,10 +21,13 @@
                         <div>
                             <h3>{{ $besoin->name }}</h3>
                             <p>{!! nl2br($besoin->description) !!}</p>
+                            <div class="text-muted">
+                                Commentaires ({{ $besoin->commentaires->count() }})
+                            </div>
                         </div>
 
                         <div class="card-actions">
-                            <button class="btn btn-icon btn-primary" wire:click="$set('selected',{{ $besoin->id }})">
+                            <button class="btn btn-primary" wire:click="$set('selected',{{ $besoin->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -32,6 +35,7 @@
                                     <circle cx="12" cy="12" r="2"></circle>
                                     <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
                                 </svg>
+                                Consulter
                             </button>
                         </div>
 
@@ -256,6 +260,19 @@
                                             </table>
                                         @endif
                                     @endforeach
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                    <button wire:click="update" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                        Commentaire
+                                    </button>
                                 </div>
                             </div>
                         </div>

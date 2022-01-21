@@ -34,8 +34,8 @@
                     </div>
                 </div> --}}
                 <div class="nav-item dropdown">
-                    @if ($user)
-                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                    @auth
+                    {{-- <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                         aria-label="Open user menu">
                         <span class="avatar avatar-sm" style="background-image: url({{ asset(" storage/$user->avatar")
                             }})"></span>
@@ -45,16 +45,17 @@
                             <div class="mt-1 small text-muted">{{ $user->fonction }}</div>
                             @endif
                         </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a href="{{ route('tabler.config.profile') }}" class="dropdown-item">Profile & Compte</a>
-                        <a href="{{ route('tabler.user.cv') }}" class="dropdown-item">CV</a>
-                        <div class="dropdown-divider"></div>
+                    </a> --}}
+                    {{-- <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"> --}}
+                        {{-- <a href="{{ route('tabler.config.profile') }}" class="dropdown-item">Profile & Compte</a> --}}
+                        {{-- <a href="{{ route('tabler.user.cv') }}" class="dropdown-item">CV</a> --}}
+                        {{-- <div class="dropdown-divider"></div>
                         <a href="/logout" class="dropdown-item">Déconnexion</a>
-                    </div>
+                    </div> --}}
+                    <a class="btn btn-light" wire:click='logout'>Déconnexion</a>
                     @else
-                    <button class="btn btn-primary" wire:click="">Connexion</button>
-                    @endif
+                    <a class="btn btn-primary" href="{{  route('login') }}">Connexion</a>
+                    @endauth
                 </div>
             </div>
             <div class="collapse navbar-collapse" id="navbar-menu">
