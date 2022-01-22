@@ -193,4 +193,14 @@ class Besoin extends Component
         $comment->delete();
     }
 
+    //  Acteur
+
+    public $actor_desc = 0;
+
+
+    public function show_actor_description($id)
+    {
+        $actor = Acteur::find($id);
+        $this->actor_desc = $actor->description;
+    }
 }

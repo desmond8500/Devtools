@@ -11,7 +11,8 @@ class Acteur extends Model
 
     protected $fillable = [
         'name',
-        'projet_id'
+        'projet_id',
+        'description'
     ];
 
     public function get_name($id)

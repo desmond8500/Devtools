@@ -66,6 +66,11 @@
                         <label class="form-label">Nom du l'acteur </label>
                         <input type="text" wire:model.defer="actor_name" class="form-control" placeholder="Nom">
                     </div>
+                    <div class="form-group col-md-8">
+                        <label class="form-label">Nom description </label>
+                        <textarea wire:model.defer="actor_description" class="form-control" placeholder="Description de l'acteur" cols="30" rows="3"></textarea>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
