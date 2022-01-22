@@ -263,16 +263,82 @@
                                 </div>
                                 <div class="col-md-12">
                                     <hr>
-                                    <button wire:click="update" class="btn btn-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Commentaire
-                                    </button>
+                                </div>
+                                <div class="col-md-10">
+                                    <ul class="list list-timeline list-timeline-simple">
+                                        @foreach ($besoin->commentaires as $comment)
+                                            <li>
+                                                <div class="list-timeline-icon ">
+                                                    <div class="list-timeline-icon bg-twitter">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <circle cx="12" cy="12" r="9"></circle>
+                                                            <circle cx="12" cy="10" r="3"></circle>
+                                                            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="list-timeline-content">
+                                                    <div class="list-timeline-time">
+                                                        {{ $comment->created_at }}
+                                                        @auth
+                                                            @if ($user_id == $comment->user_id)
+                                                                <svg xmlns="http://www.w3.org/2000/svg" wire:click="edit_comment('{{ $comment->id }}')" class="text-success icon icon-tabler icon-tabler-edit" width="24" height="24"
+                                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path>
+                                                                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path>
+                                                                    <line x1="16" y1="5" x2="19" y2="8"></line>
+                                                                </svg>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" wire:click="delete_comment('{{ $comment->id }}')" class="text-danger icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                    stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <line x1="4" y1="7" x2="20" y2="7"></line>
+                                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                                </svg>
+                                                            @endif
+                                                        @endauth
+                                                    </div>
+                                                    <p class="list-timeline-title">{{ $comment->get_user($comment->user_id) }}</p>
+                                                    @if ($comment_id == $comment->id)
+                                                        <div class="mb-3">
+                                                            <textarea wire:model.defer="comment_description" class="form-control" placeholder="Description" cols="30" rows="3"></textarea>
+                                                        </div>
+                                                        <button class="btn btn-primary" wire:click="update_comment">Mettre à jour</button>
+                                                    @else
+                                                        <p class="">  {!! nl2br($comment->description) !!}  </p>
+
+                                                    @endif
+                                                </div>
+
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col-md-2">
+                                   @auth
+                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalComment">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <line x1="12" y1="5" x2="12" y2="19" />
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                            </svg>
+                                            Commentaire
+                                        </a>
+                                    @else
+                                        <div class="text-danger text-center">
+                                            Veuillez vous connecter pour laisser un commentaire
+                                        </div>
+
+                                   @endauth
                                 </div>
                             </div>
                         </div>
@@ -344,5 +410,36 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal ========================================================= --}}
+
+        <div class="modal modal-blur fade" id="modalComment" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter un commentaire</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label">Description</label>
+                            <textarea wire:model.defer="comment_description" data-bs-toggle="autosize" placeholder="Description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
+                        <button wire:click="store_comment" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le commentaire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section('script')
+            <script>
+                window.addEventListener('closeModal', event => {
+                    $("#modalComment").modal('hide');
+                })
+            </script>
+        @endsection
 </div>
 
