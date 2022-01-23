@@ -44,7 +44,7 @@
                                 Consulter
                             </button>
                             @foreach ($besoin->stickers as $sticker)
-                                <button class="btn btn-success " wire:click="delete_sticker('{{ $sticker->id }}')">{{
+                                <button class="btn btn-success" >{{
                                     $sticker->team_name($sticker->team_id) }}
                                 </button>
                             @endforeach
