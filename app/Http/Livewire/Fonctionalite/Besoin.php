@@ -202,76 +202,9 @@ class Besoin extends Component
         $this->actor_desc = $actor->description;
     }
 
-    // Acteur
-    public $actor_name, $actor_description;
-    public $actor_id = 0, $actor_form = 0;
 
-    public function store_actor()
-    {
-        Acteur::create([
-            'name' => $this->actor_name,
-            'description' => $this->actor_description,
-            'projet_id' => $this->projet->id,
-        ]);
 
-        // $this->reset('actor_name, actor_description');
-    }
-    public function edit_actor($id)
-    {
-        $this->actor_id = $id;
-        $actor = Acteur::find($id);
-        $this->actor_name = $actor->name;
-        $this->actor_description = $actor->description;
-    }
-    public function update_actor()
-    {
-        $actor = Acteur::find($this->actor_id);
-        $actor->name = $this->actor_name;
-        $actor->description = $this->actor_description;
 
-        $actor->save();
-
-        $this->reset('actor_id', 'actor_name', 'actor_description');
-    }
-    public function delete_actor()
-    {
-        $actor = Acteur::find($this->actor_id);
-        $actor->delete();
-    }
-
-    // Team
-    public $team_name;
-    public $team_id = 0, $team_form = 0;
-
-    public function store_team()
-    {
-        Team::create([
-            'name' => $this->team_name,
-            'projet_id' => $this->projet->id,
-        ]);
-
-        $this->reset('team_name',);
-    }
-    public function edit_team($id)
-    {
-        $this->team_id = $id;
-        $team = Team::find($id);
-        $this->team_name = $team->name;
-    }
-    public function update_team()
-    {
-        $team = Team::find($this->team_id);
-        $team->name = $this->team_name;
-
-        $team->save();
-
-        $this->reset('team_id', 'team_name');
-    }
-    public function delete_team()
-    {
-        $team = Team::find($this->team_id);
-        $team->delete();
-    }
 // Sticker
     public function add_sticker($id)
     {
