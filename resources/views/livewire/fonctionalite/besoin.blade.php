@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="card-actions">
-                            <button class="btn btn-primary" wire:click="$set('selected',{{ $besoin->id }})">
+                            <button class="btn btn-primary mb-2" wire:click="$set('selected',{{ $besoin->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -42,9 +42,9 @@
                                     <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path>
                                 </svg>
                                 Consulter
-                            </button>
+                            </button> <br>
                             @foreach ($besoin->stickers as $sticker)
-                                <button class="btn btn-success" >{{
+                                <button class="btn btn-success btn-sm" >{{
                                     $sticker->team_name($sticker->team_id) }}
                                 </button>
                             @endforeach
