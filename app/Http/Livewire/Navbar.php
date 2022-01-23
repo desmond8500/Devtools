@@ -12,7 +12,7 @@ class Navbar extends Component
         return view('livewire.navbar',[
             'user' => Auth::user() ?? null,
             'menus' => $this->menu(),
-            'index' => (object) array('name' => 'Tabler', 'route' => 'index'),
+            'index' => (object) array('name' => 'DevTools', 'route' => 'index'),
         ]);
     }
     public function menu()

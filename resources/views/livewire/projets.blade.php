@@ -1,5 +1,5 @@
 <div>
-    <div class="page-header d-print-none">
+    <div class="page-header d-print-none mb-2">
         <div class="row align-items-center">
             <div class="col">
                 <h2 class="page-title"> Projets </h2>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="row ">
+    <div class="row">
         @forelse ($projets as $projet)
             <div class="col-md-3">
                 <a href="{{ route('projet', ['projet_id'=>$projet->id]) }}" class="text-dark" style="text-decoration: none">
