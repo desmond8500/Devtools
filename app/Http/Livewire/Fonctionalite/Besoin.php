@@ -7,6 +7,8 @@ use App\Models\BesoinFonctionel as ModelsBesoinFonctionel;
 use App\Models\Comment;
 use App\Models\Etape;
 use App\Models\Scenario;
+use App\Models\Sticker;
+use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -32,11 +34,7 @@ class Besoin extends Component
             'acteurs' => Acteur::all(),
             'besoins' => ModelsBesoinFonctionel::where('name', 'like', '%' . $this->search . '%')->where('projet_id', $this->projet->id)->get(),
             'user_id' => Auth::id(),
-
-            // 'besoins' => ModelsBesoinFonctionel::query()
-                // ->where('name', 'like', '%' . $this->search . '%')
-                // ->orwhere('projet_id', $this->projet->id)
-                // ->get(),
+            'teams' => Team::where('projet_id', $this->projet->id)->get()
         ]);
     }
     // Besoin
@@ -182,7 +180,7 @@ class Besoin extends Component
     public function update_comment()
     {
         $comment = Comment::find($this->comment_id);
-        $comment->description = $this->comment_description;
+        $comment->description = ucfirst($this->comment_description);
 
         $comment->save();
 
@@ -202,5 +200,53 @@ class Besoin extends Component
     {
         $actor = Acteur::find($id);
         $this->actor_desc = $actor->description;
+    }
+
+    // Team
+    public $team_name;
+    public $team_id = 0, $team_form = 0;
+
+    public function store_team()
+    {
+        Team::create([
+            'name' => $this->team_name,
+            'projet_id' => $this->projet->id,
+        ]);
+
+        $this->reset('team_name',);
+    }
+    public function edit_team($id)
+    {
+        $this->team_id = $id;
+        $team = Team::find($id);
+        $this->team_name = $team->name;
+    }
+    public function update_team()
+    {
+        $team = Team::find($this->team_id);
+        $team->name = $this->team_name;
+
+        $team->save();
+
+        $this->reset('team_id', 'team_name');
+    }
+    public function delete_team()
+    {
+        $team = Team::find($this->team_id);
+        $team->delete();
+    }
+// Sticker
+    public function add_sticker($id)
+    {
+        Sticker::create([
+            'besoin_id' => $this->selected,
+            'team_id' => $id,
+        ]);
+    }
+
+    public function delete_sticker($id)
+    {
+        $sticker = Sticker::find($id);
+        $sticker->delete();
     }
 }

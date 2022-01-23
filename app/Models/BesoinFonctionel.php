@@ -30,4 +30,11 @@ class BesoinFonctionel extends Model
     {
         return $this->hasMany(Comment::class, 'besoin_id', 'id');
     }
+
+    public function stickers(): HasMany
+    {
+        return $this->hasMany(Sticker::class, 'besoin_id', 'id');
+    }
+
+
 }

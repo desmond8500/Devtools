@@ -43,6 +43,11 @@
                                 </svg>
                                 Consulter
                             </button>
+                            @foreach ($besoin->stickers as $sticker)
+                                <button class="btn btn-success " wire:click="delete_sticker('{{ $sticker->id }}')">{{
+                                    $sticker->team_name($sticker->team_id) }}
+                                </button>
+                            @endforeach
                         </div>
 
                     </div>
@@ -51,16 +56,29 @@
                         <div class="accordion-body">
                             <div class="row">
                                 @if ($besoin_id == $besoin->id)
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Nom de la fonctinalité</label>
                                         <input type="email" class="form-control" wire:model.defer='name' placeholder="Nom de la fonctinalité">
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Acteurs</label>
                                         <input type="email" class="form-control" wire:model.defer='acteur' placeholder="Acteurs impliqués">
                                         <div class="btn-list mt-1">
                                             @foreach ($acteurs as $item)
                                                 <h4><span class="badge" wire:click="add_actor('{{ $item->name }}')">{{ $item->name }}</span></h4>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Team</label>
+                                        <div>
+                                            @foreach ($besoin->stickers as $sticker)
+                                                <button class="btn btn-success " wire:click="delete_sticker('{{ $sticker->id }}')">{{ $sticker->team_name($sticker->team_id) }}</button>
+                                            @endforeach
+                                        </div>
+                                        <div class="mt-1">
+                                            @foreach ($teams as $team)
+                                                <button class="btn btn-secondary btn-sm" wire:click="add_sticker('{{ $team->id }}')">{{ $team->name }}</button>
                                             @endforeach
                                         </div>
                                     </div>
@@ -73,7 +91,7 @@
                                         <textarea class="form-control" wire:model.defer='description' placeholder="Description du projet"
                                             rows="3"></textarea>
                                     </div>
-                                    <div class="mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <button class="btn btn-primary" wire:click="update">Modifier</button>
                                         <button class="btn btn-danger" wire:click="delete">Supprimer</button>
                                         <button class="btn btn-secondary" wire:click="$set('besoin_id',0)">Fermer</button>
@@ -127,7 +145,7 @@
                                                                     <input type="text" wire:model="etape_description" class="form-control">
                                                                 </div>
                                                             @else
-                                                                <div>{{ $etape->description }}</div>
+                                                                <div>{{ ucfirst($etape->description) }}</div>
                                                             @endif
                                                         </td>
                                                         <td>
@@ -220,7 +238,7 @@
                                                                         <input type="text" wire:model="etape_description" class="form-control">
                                                                     </div>
                                                                 @else
-                                                                    <div>{{ $etape->description }}</div>
+                                                                    <div>{{ ucfirst($etape->description) }}</div>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -444,6 +462,38 @@
             <script>
                 window.addEventListener('closeModal', event => {
                     $("#modalComment").modal('hide');
+                })
+            </script>
+        @endsection
+
+    {{-- Modal ========================================================= --}}
+
+
+        <div class="modal modal-blur fade" id="modalTeam" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter un membre d'équipe</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="form-group col-md-8">
+                            <label class="form-label">Nom </label>
+                            <input type="text" wire:model.defer="team_name" class="form-control" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
+                        <button wire:click="store_team" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le team member</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section('script')
+            <script>
+                window.addEventListener('closeModal', event => {
+                    $("#modalTeam").modal('hide');
                 })
             </script>
         @endsection

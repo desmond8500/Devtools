@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Acteur;
 use App\Models\Projet as ModelsProjet;
+use App\Models\Team;
 use Livewire\Component;
 
 class Projet extends Component
@@ -84,6 +85,7 @@ class Projet extends Component
         $actor = Acteur::find($this->actor_id);
         $actor->delete();
     }
+
 
 
 }
