@@ -202,6 +202,43 @@ class Besoin extends Component
         $this->actor_desc = $actor->description;
     }
 
+    // Acteur
+    public $actor_name, $actor_description;
+    public $actor_id = 0, $actor_form = 0;
+
+    public function store_actor()
+    {
+        Acteur::create([
+            'name' => $this->actor_name,
+            'description' => $this->actor_description,
+            'projet_id' => $this->projet->id,
+        ]);
+
+        // $this->reset('actor_name, actor_description');
+    }
+    public function edit_actor($id)
+    {
+        $this->actor_id = $id;
+        $actor = Acteur::find($id);
+        $this->actor_name = $actor->name;
+        $this->actor_description = $actor->description;
+    }
+    public function update_actor()
+    {
+        $actor = Acteur::find($this->actor_id);
+        $actor->name = $this->actor_name;
+        $actor->description = $this->actor_description;
+
+        $actor->save();
+
+        $this->reset('actor_id', 'actor_name', 'actor_description');
+    }
+    public function delete_actor()
+    {
+        $actor = Acteur::find($this->actor_id);
+        $actor->delete();
+    }
+
     // Team
     public $team_name;
     public $team_id = 0, $team_form = 0;

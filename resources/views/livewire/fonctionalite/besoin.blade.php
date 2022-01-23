@@ -22,7 +22,7 @@
 
         <div class="col-md-12">
             @forelse ($besoins as $besoin)
-                <div class="card mb-2">
+                <div class="card mb-2 border border-dark">
                     <div class="card-header">
                         <div>
                             <h3>{{ $besoin->name }}</h3>
@@ -497,5 +497,43 @@
                 })
             </script>
         @endsection
+
+    {{-- Modal acteur ========================================================= --}}
+
+    <div class="modal modal-blur fade" id="modalActeur" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter un acteur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="form-group col-md-8">
+                        <label class="form-label">Nom du l'acteur </label>
+                        <input type="text" wire:model.defer="actor_name" class="form-control" placeholder="Nom">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="form-label">Nom description </label>
+                        <textarea wire:model.defer="actor_description" class="form-control"
+                            placeholder="Description de l'acteur" cols="30" rows="3"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
+                    <button wire:click="store_actor" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le
+                        client</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section('script')
+    <script>
+        window.addEventListener('closeModal', event => {
+                        $("#modalActeur").modal('hide');
+                    })
+    </script>
+    @endsection
 </div>
 
