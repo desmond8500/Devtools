@@ -13,3 +13,7 @@ Route::get('/projets', Projets::class)->name('projets');
 Route::get('/projet/{projet_id}', Projet::class)->name('projet');
 Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
+
+Route::get('/mermaid', function () {
+    return view('livewire.tabler.database');
+});
