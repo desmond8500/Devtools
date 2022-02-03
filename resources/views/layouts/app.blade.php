@@ -21,11 +21,11 @@
     </div>
 
     <script src="https://unpkg.com/@tabler/core@latest/dist/js/tabler.min.js"></script>
+    @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({startOnLoad:true});
     </script>
-    @livewireScripts
     {{-- @stack('scripts') --}}
 </body>
 </html>

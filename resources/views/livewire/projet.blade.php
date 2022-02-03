@@ -13,27 +13,25 @@
 
                     @elseif($tab_selected==2) {{-- Description détaillé --}}
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fonctionalite">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                             Fonctionalité
                         </button>
+                    @elseif($tab_selected==3) {{-- Ressources --}}
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDiagramme">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <line x1="12" y1="5" x2="12" y2="19" /> <line x1="5" y1="12" x2="19" y2="12" /> </svg>
+                            Diagramme
+                        </a>
+                        <a target="_blank" class="btn btn-primary" href="https://mermaid.live/edit#pako:eNpVkE1qw0AMha8itEohvoAXhcZOsgm00Ow8XgiPnBna-WEsU4Ltu3ccE2i1kvS-9xCasAuascRbomjgWisPud6ayiQ7iKOhhaJ4nc8s4ILn-wyH3TnAYEKM1t9eNv6wQlBNlxVjEGP917JJ1cP_7nmGurlQlBDbv8r1J8xwbOyHyfH_FZM4u05NT2VPRUcJKkot7tFxcmR1PntaDQrFsGOFZW419zR-i0Lll4yOUZPwUVsJCUtJI--RRgmfd989542pLeUnuG25_ALXsls9">
+                            Editeur
+                        </a>
+                        <a target="_blank" class="btn btn-primary" href="https://mermaid-js.github.io/mermaid/#/n00b-gettingStarted">
+                            Documentation
+                        </a>
                     @elseif($tab_selected==5) {{-- Ressources --}}
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRessource">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="12" y1="5" x2="12" y2="19" />
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                </svg>
-                                Ressource
-                            </a>
-
-
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRessource">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <line x1="12" y1="5" x2="12" y2="19" /> <line x1="5" y1="12" x2="19" y2="12" /> </svg>
+                            Ressource
+                        </a>
                     @endif
                 </div>
             </div>

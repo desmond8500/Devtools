@@ -29,11 +29,10 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Description</label>
-                                <textarea wire:model.defer="Description de la ressource" data-bs-toggle="autosize" placeholder="Description" class="form-control"></textarea>
+                                <textarea wire:model.defer="description" data-bs-toggle="autosize" placeholder="Description de la ressource" class="form-control"></textarea>
                             </div>
                             <div>
                                 <div class="btn-list justify-content-between">
-
                                     <button wire:click="delete_ressource" class="btn btn-danger">Supprimer</button>
                                     <button wire:click="update_ressource" class="btn btn-primary">Modifier</button>
                                 </div>
@@ -51,14 +50,7 @@
                             </div>
                             <div class="card-actions">
                                 <button class="btn btn-primary btn-icon" wire:click="edit_ressource('{{ $ressource->id }}')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path>
-                                        <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path>
-                                        <line x1="16" y1="5" x2="19" y2="8"></line>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path> <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path> <line x1="16" y1="5" x2="19" y2="8"></line> </svg>
                                 </button>
                             </div>
                         </div>
@@ -78,18 +70,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
-                        <div class="mb-3 col-md-8">
+                        <div class="mb-3">
                             <label class="form-label required">Nom</label>
-                            <input type="text" wire:model.defer="name" required class="form-control" placeholder="Nom">
+                            <input type="text" wire:model.defer="name" required class="form-control" placeholder="Nom de la ressource">
                         </div>
-                        <div class="mb-3 col-md-8">
+                        <div class="mb-3">
                             <label class="form-label required">Lien</label>
-                            <input type="text" wire:model.defer="link" required class="form-control" placeholder="Lien">
+                            <input type="text" wire:model.defer="link" required class="form-control" placeholder="Lien vers la ressource">
                         </div>
 
-                        <div class="mb-3 col-md-12">
+                        <div class="mb-3">
                             <label class="form-label">Description</label>
-                            <textarea wire:model.defer="description" data-bs-toggle="autosize" placeholder="Description" class="form-control"></textarea>
+                            <textarea wire:model.defer="description" data-bs-toggle="autosize" placeholder="Description de la ressource" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
