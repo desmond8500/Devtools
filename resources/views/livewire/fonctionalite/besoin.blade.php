@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-7 mb-3">
             @foreach ($acteurs as $acteur)
-                <button class="btn btn-primary" wire:click="show_actor_description('{{ $acteur->id }}')">{{ $acteur->name }}</button>
+                <button class="btn btn-primary mb-1" wire:click="show_actor_description('{{ $acteur->id }}')">{{ $acteur->name }}</button>
             @endforeach
 
             @if ($actor_desc)
