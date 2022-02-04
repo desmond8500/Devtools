@@ -101,7 +101,9 @@
                                         <b>Acteurs :</b> {{ $besoin->acteur }}
                                     </div>
                                     <div class="col-md-1">
-                                        <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> <i class="fa fa-edit" aria-hidden="true"></i> </button>
+                                        <button class="btn btn-outline-primary" wire:click="edit('{{ $besoin->id }}')"> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path> <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path> <line x1="16" y1="5" x2="19" y2="8"></line> </svg>
+                                        </button>
                                     </div>
                                     {{-- <div class="col-md-6">
                                         <b>Description</b>
@@ -152,26 +154,14 @@
                                                             @if ($etape->id == $etape_id)
                                                                 <div>
                                                                     <span class="text-success" title="Modifier" wire:click="update_etape">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
-                                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                                            <path d="M5 12l5 5l10 -10"></path>
-                                                                        </svg>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M5 12l5 5l10 -10"></path> </svg>
                                                                     </span>
                                                                     <span class="text-danger" title="Supprimer" wire:click="delete_etape">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24"
-                                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                                            <line x1="4" y1="7" x2="20" y2="7"></line>
-                                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                                        </svg>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="4" y1="7" x2="20" y2="7"></line> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
                                                                     </span>
-                                                                    <span class="text-primary" title="Créer un scénario alternatif"   wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')"><i class="fa fa-arrow-right"  aria-hidden="true"></i></span>
+                                                                    <span class="text-primary" title="Créer un scénario alternatif"   wire:click="store_scenario('{{ $key+1 }}','{{ $besoin->id }}')">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"></path> </svg>
+                                                                    </span>
                                                                 </div>
                                                             @else
                                                                 <div class="text-success" wire:click="edit_etape('{{ $etape->id }}')">
