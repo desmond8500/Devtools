@@ -57,3 +57,12 @@ class Attribute{
 
 
 ```
+
+
+classDiagram
+
+class User{
+    +string name
+    +string email
+    +string password
+}
