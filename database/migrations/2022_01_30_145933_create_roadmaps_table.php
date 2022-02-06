@@ -17,10 +17,10 @@ class CreateRoadmapsTable extends Migration
             $table->id();
             $table->string('projet_id');
             $table->string('name');
-            $table->string('societe')->nullable();
-            $table->string('chef_de_projet')->nullable();
-            $table->string('date_debut')->nullable();
-            $table->string('date_fin')->nullable();
+            $table->string('client')->nullable();
+            $table->string('chief')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->timestamps();
         });
     }

@@ -14,13 +14,14 @@ class Project{
     +string name
     +text description
 }
-Project <-- Roadmap
-Project <-- Team
+Project "1" <-- "1" Roadmap
+Project "1" <-- "*" Team
 
 class Roadmap{
     +int project_id
     +string client_name
     +string client_name
+    +string chief
     +date start_date
     +date end_date
 }
@@ -41,7 +42,9 @@ class Jalon{
     +int order
     +text description
     +date start_date
+    +date end_date
     +int duration
+    +int avancement
 }
 Jalon <-- Attribute
 
@@ -57,12 +60,3 @@ class Attribute{
 
 
 ```
-
-
-classDiagram
-
-class User{
-    +string name
-    +string email
-    +string password
-}

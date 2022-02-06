@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Projet extends Model
@@ -17,5 +18,10 @@ class Projet extends Model
     public function besoins(): HasMany
     {
         return $this->hasMany(BesoinFonctionel::class, 'projet_id');
+    }
+
+    public function roadmap(): HasOne
+    {
+        return $this->hasOne(Roadmap::class, 'projet_id');
     }
 }

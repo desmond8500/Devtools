@@ -6,24 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateJalonsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('jalons', function (Blueprint $table) {
             $table->id();
+            $table->string('sprint_id');
+            $table->integer('order')->nullable();
+            $table->string('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->integer('duration')->nullable();
+            $table->integer('avancement')->default(0);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('jalons');
