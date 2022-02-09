@@ -132,7 +132,7 @@ class Roadmap extends Component
             'start_date' => $this->jalon_start_date,
             'end_date' => $this->jalon_end_date,
             'duration' => $this->jalon_duration,
-            'avancement' => $this->jalon_avancement,
+            'avancement' => $this->jalon_avancement ?? 0,
         ]);
         $this->emit('jalon');
         $this->reset('sprint_id', 'jalon_order', 'jalon_description', 'jalon_start_date', 'jalon_end_date', 'jalon_duration', 'jalon_avancement');
