@@ -16,13 +16,15 @@ class Roadmap extends Component
     public function mount($projet)
     {
         $this->projet = $projet;
-        $this->roadmap = ModelsRoadmap::find($projet->roadmap->id);
-        $this->sprint_order = $projet->roadmap->sprint;
+        if ($this->roadmap) {
+            $this->roadmap = ModelsRoadmap::find($projet->roadmap->id);
+            $this->sprint_order = $projet->roadmap->sprint;
 
-        if ($projet->roadmap->sprints->count()) {
-            $this->sprint_order = $projet->roadmap->sprints->count()+1;
-        } else {
-            $this->sprint_order = 1;
+            if ($projet->roadmap->sprints->count()) {
+                $this->sprint_order = $projet->roadmap->sprints->count()+1;
+            } else {
+                $this->sprint_order = 1;
+            }
         }
 
     }
