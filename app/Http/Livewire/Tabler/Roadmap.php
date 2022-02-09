@@ -16,7 +16,7 @@ class Roadmap extends Component
     public function mount($projet)
     {
         $this->projet = $projet;
-        if ($this->roadmap) {
+        if ($this->projet->roadmap) {
             $this->roadmap = ModelsRoadmap::find($projet->roadmap->id);
             $this->sprint_order = $projet->roadmap->sprint;
 

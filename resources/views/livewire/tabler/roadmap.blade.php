@@ -151,7 +151,21 @@
 
             </div>
         @empty
+            <div class="col-md-4 offset-4 text-center mt-3">
+                Veulliez ajouter un sprint ici
+                <div class="mt-3">
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSprint">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Sprint
+                    </a>
+                </div>
 
+            </div>
         @endforelse
 
     @endif
@@ -162,7 +176,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ajouter une roadmap {{ $sprint_id }}</h5>
+                    <h5 class="modal-title">Ajouter un sprint</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row">
@@ -185,8 +199,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
-                    <button wire:click="store_sprint" class="btn btn-primary" data-bs-dismiss="modal">Ajouter la roadmap</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button wire:click="store_sprint" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le Sprint</button>
                 </div>
             </div>
         </div>
@@ -220,7 +234,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button wire:click="store_jalon" class="btn btn-primary" data-bs-dismiss="modal">Ajouter la roadmap</button>
                 </div>
             </div>
