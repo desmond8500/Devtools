@@ -61,4 +61,8 @@ class Database extends Component
         $diagramme->delete();
     }
 
+    public function close()
+    {
+        $this->dispatchBrowserEvent('data-bs-dismiss:modal');
+    }
 }

@@ -1,6 +1,6 @@
 <div class="row">
     @if ($roadmap)
-        <div class="col-md-12 mb-2">
+        {{-- <div class="col-md-12 mb-2">
             <div class="card card-sm">
                 <div class="card-header">
                     <h3 class="card-title">Roadmap</h3>
@@ -16,13 +16,13 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         @forelse ($roadmap->sprints as $sprint)
             <div class="col-md-12 mb-2">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Sprint {{ $sprint->order }}</h3>
+                        <h3 class="card-title">Sprint {{ $sprint->order }} </h3>
                         <div class="card-actions">
                             <div class="btn-list">
                                 {{-- <a  data-bs-toggle="modal" data-bs-target="#modalJalon" class="btn btn-icon btn-primary"> --}}
@@ -126,8 +126,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </td>
                                     </tr>
                                 @else

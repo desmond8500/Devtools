@@ -37,7 +37,7 @@ class Roadmap extends Component
     {
         return view('livewire.tabler.roadmap',[
             'roadmap' => $this->projet->roadmap,
-            'team' => Team::where('projet_id', $this->projet->id)
+            'team' => Team::where('projet_id', $this->projet->id)->get()
         ]);
     }
 
@@ -171,7 +171,8 @@ class Roadmap extends Component
     public function set_sprint_id($id)
     {
         $this->sprint_id = $id;
-        $this->jalon_order = Sprint::where('id', $id)->count();
+        $sprint = Sprint::find($id);
+        $this->jalon_order = $sprint->jalons->count() +1;
     }
 
 }

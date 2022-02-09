@@ -50,4 +50,5 @@ class Projets extends Component
         $instance = Projet::find($this->instance_id);
         $instance->delete();
     }
+
 }

@@ -11,7 +11,7 @@
 
 <body class="antialiased">
     <div class="wrapper">
-        {{-- @livewire('navbar') --}}
+        @livewire('navbar')
         <div class="page-wrapper">
             <div class="container-xl">
                 <div class="page-header d-print-none mb-2">

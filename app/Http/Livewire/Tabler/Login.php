@@ -13,12 +13,19 @@ class Login extends Component
         return view('livewire.tabler.login');
     }
 
-    public $email, $password;
+    public $email, $password, $alert;
 
     public function connexion()
     {
-        Auth::attempt(['email' => $this->email, 'password' => $this->password]);
-        // Auth::attempt(['email' => $this->email, 'password' => Hash::make($this->password)]);
-        return redirect('/');
+        $auth = Auth::attempt(['email' => $this->email, 'password' => $this->password]);
+
+        if ($auth) {
+            return redirect()->route('index');
+        } else {
+            session()->flash('message', 'Les identifiants saisis sont incorrectes');
+            $this->alert = 'Les identifiants saisis sont incorrectes';
+        }
+        $this->alert = $auth;
+
     }
 }

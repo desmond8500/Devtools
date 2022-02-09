@@ -23,10 +23,12 @@
 
     <script src="https://unpkg.com/@tabler/core@latest/dist/js/tabler.min.js"></script>
     @livewireScripts
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({startOnLoad:true});
     </script>
-    {{-- @stack('scripts') --}}
+
+    @stack('scripts')
 </body>
 </html>
