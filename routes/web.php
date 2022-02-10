@@ -8,11 +8,11 @@ use App\Http\Livewire\Tabler\Register;
 use App\Models\Diagramme;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/connexion', [AuthController::class, 'connexion'])->name('connexion');
+Route::post('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgot_password');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', Projets::class)->name('index');

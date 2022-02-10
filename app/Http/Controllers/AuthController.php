@@ -44,4 +44,9 @@ class AuthController extends Controller
 
         return redirect()->route('register');
     }
+
+    public function forgot_password()
+    {
+        return view('auth.forgot_password');
+    }
 }

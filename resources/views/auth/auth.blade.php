@@ -11,7 +11,6 @@
 
 <body class="antialiased">
     <div class="wrapper">
-        @livewire('navbar')
         <div class="page-wrapper">
             <div class="container-xl">
                 @yield('content')
