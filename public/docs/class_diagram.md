@@ -10,12 +10,30 @@ class User{
 }
 
 
+
 class Project{
     +string name
     +text description
 }
+
 Project "1" <-- "1" Roadmap
 Project "1" <-- "*" Team
+Project "1" <-- "*" Besoin_fonctionnel
+
+
+class Besoinfonctionnel{
+    +int projet_id
+    +string name
+    +string acteur
+    +string prerequis
+    +text description
+}
+
+Besoinfonctionnel "1" <-- "*" Acteur
+
+class Acteur{
+    String name
+}
 
 class Roadmap{
     +int project_id
@@ -49,7 +67,7 @@ class Jalon{
 Jalon <-- Attribute
 
 class Team{
-    +sprint name
+    +string name
     +text description
 }
 
