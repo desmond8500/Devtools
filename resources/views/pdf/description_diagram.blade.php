@@ -4,10 +4,10 @@
     Description détaillée
 @endsection
 
-@section('header')
+{{-- @section('header')
     <b>Description détaillée du projet :</b> {{ $projet->name }} <br>
     {!! nl2br($projet->description) !!}
-@endsection
+@endsection --}}
 
 @section('content')
     @foreach ($projet->besoins as $besoin)
