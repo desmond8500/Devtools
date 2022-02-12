@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-md-7 mb-3">
+        <div class="col-md-5 mb-3">
             @foreach ($acteurs as $acteur)
                 <button class="btn btn-primary mb-1" wire:click="show_actor_description('{{ $acteur->id }}')">{{ $acteur->name }}</button>
             @endforeach
@@ -10,6 +10,9 @@
                 {!! nl2br($actor_desc) !!}
             </div>
             @endif
+        </div>
+        <div class="col-md-2 mb-3">
+            <a class="btn btn-primary" href="{{ route('pdf.description_diagram',['id'=> $projet->id]) }}">PDF</a>
         </div>
         <div class="col-md-5 mb-3">
             <div class="input-icon">

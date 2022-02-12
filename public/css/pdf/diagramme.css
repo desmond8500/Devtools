@@ -1,0 +1,54 @@
+@page {
+    margin: 7mm;
+    width: 100%;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header-space,
+.footer,
+.footer-space {
+    height: 100px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.table {
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+.th {
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+.td {
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.besoin{
+    margin-bottom: 20px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.scenario{
+    margin-bottom: 5px;
+}
+.scenario_title{
+    background: black;
+    color: white;
+}

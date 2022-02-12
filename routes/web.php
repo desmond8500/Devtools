@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PdfController;
 use App\Http\Livewire\Projet;
 use App\Http\Livewire\Projets;
 use App\Http\Livewire\Tabler\Login;
@@ -26,6 +27,11 @@ Route::middleware(['auth'])->group(function () {
         $diagramme = Diagramme::find($id);
         return view('diagramme')->with('diagramme', $diagramme);
     })->name('diagramme');
+
+    Route::prefix('pdf')->name('pdf.')->group(function () {
+        Route::get('description_diagram/{id}', [PdfController::class, 'description_diagram'])->name('description_diagram');
+
+    });
 
 });
 
