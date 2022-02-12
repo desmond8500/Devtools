@@ -50,7 +50,7 @@ body {
 }
 
 .scenario{
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 .scenario_title{
     background: #206BC4;
@@ -61,4 +61,8 @@ body {
 }
 .page-header{
     margin-bottom: 10px;
+}
+
+.etape{
+    margin-top: 3px;
 }

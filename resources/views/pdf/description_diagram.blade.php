@@ -25,7 +25,7 @@
                             <div class="scenario_title">Scénario nominal</div>
                             <div>
                                 @foreach ($scenario->etapes as $key => $etape)
-                                    <b>{{ $key+1 }}</b>  {!! nl2br($etape->description) !!} <br>
+                                    <div class="etape"><b>{{ $key+1 }}</b> {!! nl2br($etape->description) !!}</div>
                                 @endforeach
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="scenario_title">Scénario alternatif Etape {{ $scenario->type }}</div>
                         <div>
                             @foreach ($scenario->etapes as $key => $etape)
-                                <b>{{ $key+1 }}</b> {!! nl2br($etape->description) !!} <br>
+                                <div class="etape"><b>{{ $key+1 }}</b> {!! nl2br($etape->description) !!}</div>
                             @endforeach
                         </div>
                     </div>
