@@ -42,18 +42,23 @@ body {
 .besoin{
     margin-bottom: 20px;
     border: 1px solid black;
+    border-radius: 5px;
     padding: 5px;
+    background: #FAFBFC;
 }
-.besoin_title{
-
+.besoin_desc{
 }
 
 .scenario{
     margin-bottom: 5px;
 }
 .scenario_title{
-    background: #1572A1;
+    background: #206BC4;
+    /* background: #398AB9; */
     color: white;
     padding: 3px;
     font-weight: bold;
+}
+.page-header{
+    margin-bottom: 10px;
 }

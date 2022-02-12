@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/pdf/diagramme.css">
 </head>
 <body>
+    <div class="page-header">
+        @yield('page-header')
+    </div>
     @yield('content')
 </body>
 </html>

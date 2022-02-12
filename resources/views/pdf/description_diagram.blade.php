@@ -4,10 +4,10 @@
     Description détaillée
 @endsection
 
-{{-- @section('header')
-    <b>Description détaillée du projet :</b> {{ $projet->name }} <br>
+@section('page-header')
+    <h2>{{ $projet->name }}</h2>
     {!! nl2br($projet->description) !!}
-@endsection --}}
+@endsection
 
 @section('content')
     @foreach ($projet->besoins as $besoin)
@@ -29,7 +29,6 @@
                                 @endforeach
                             </div>
                         </div>
-
                     @else
                     <div class="scenario">
                         <div class="scenario_title">Scénario alternatif Etape {{ $scenario->type }}</div>
@@ -40,12 +39,8 @@
                         </div>
                     </div>
                     @endif
-
                 @endforeach
-
-
             </div>
-
         @endif
     @endforeach
 @endsection
