@@ -49,7 +49,7 @@
         @endif
     @endforeach
 @endsection
-
+{{--
 @section('footer')
     tres
-@endsection
+@endsection --}}
