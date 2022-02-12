@@ -1,4 +1,4 @@
-@extends('pdf/layout')
+@extends('pdf/layout1')
 
 @section('title')
     Description détaillée
@@ -32,7 +32,7 @@
 
                     @else
                     <div class="scenario">
-                        <div class="scenario_title">Scénario alternatif</div>
+                        <div class="scenario_title">Scénario alternatif Etape {{ $scenario->type }}</div>
                         <div>
                             @foreach ($scenario->etapes as $key => $etape)
                                 {{ $key+1 }} {!! nl2br($etape->description) !!} <br>

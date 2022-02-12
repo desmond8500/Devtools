@@ -49,6 +49,8 @@ body {
     margin-bottom: 5px;
 }
 .scenario_title{
-    background: black;
+    background: #1572A1;
     color: white;
+    padding: 3px;
+    font-weight: bold;
 }
