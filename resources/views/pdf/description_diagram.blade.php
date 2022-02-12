@@ -15,7 +15,7 @@
 
             <div class="besoin">
                 <div class="besoin_desc">
-                    {{ $besoin->name }}
+                    <b class="besoin_title">{{ strtoupper($besoin->name) }}</b>
                     <p>{!! nl2br($besoin->description) !!}</p>
                 </div>
 
@@ -25,7 +25,7 @@
                             <div class="scenario_title">Scénario nominal</div>
                             <div>
                                 @foreach ($scenario->etapes as $key => $etape)
-                                    {{ $key+1 }}  {!! nl2br($etape->description) !!} <br>
+                                    <b>{{ $key+1 }}</b>  {!! nl2br($etape->description) !!} <br>
                                 @endforeach
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="scenario_title">Scénario alternatif Etape {{ $scenario->type }}</div>
                         <div>
                             @foreach ($scenario->etapes as $key => $etape)
-                                {{ $key+1 }} {!! nl2br($etape->description) !!} <br>
+                                <b>{{ $key+1 }}</b> {!! nl2br($etape->description) !!} <br>
                             @endforeach
                         </div>
                     </div>
