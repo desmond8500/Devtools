@@ -28,22 +28,10 @@
                                     <textarea wire:model.defer="description" data-bs-toggle="autosize" placeholder="Description"
                                         class="form-control"></textarea>
                                 </div>
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-12">
                                     <label class="form-label">Contenu</label>
-                                    <textarea wire:model="content" data-bs-toggle="autosize" placeholder="Contenu du diagramme"
+                                    <textarea wire:model="content"  placeholder="Contenu du diagramme"
                                         class="form-control"></textarea>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <div class="mermaid">
-                                        {{ $content }}
-                                    </div>
-
-                                    <div class="mermaid">
-                                        classDiagram
-                                            class User{
-
-                                            }
-                                    </div>
                                 </div>
                             </div>
 

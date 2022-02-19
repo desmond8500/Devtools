@@ -27,7 +27,31 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 mb-2"></div>
+    <div class="col-md-6 mb-2">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Utilisateurs</h3>
+            </div>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="text-nowrap"> Nom </th>
+                        <th class="text-nowrap"> Email </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $key => $user)
+                        <tr>
+                            <th>{{ $key+1 }}</th>
+                            <td> {{ $user->name }} </td>
+                            <td> {{ $user->email }} </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="col-md-6 mb-2">
         <div class="card card-sm">

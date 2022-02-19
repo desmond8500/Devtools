@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Projet;
 use App\Models\Acteur;
 use App\Models\Projet;
 use App\Models\Team;
+use App\Models\User;
 use Livewire\Component;
 
 class Settings extends Component
@@ -21,6 +22,7 @@ class Settings extends Component
         return view('livewire.projet.settings',[
             'acteurs' => Acteur::where('projet_id', $this->projet->id)->get(),
             'teams' => Team::where('projet_id', $this->projet->id)->get(),
+            'users' => User::all(),
         ]);
     }
 

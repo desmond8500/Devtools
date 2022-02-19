@@ -4,76 +4,133 @@
 classDiagram
 
 class User{
-    +string name
-    +string email
-    +string password
+    + string prenom
+    + string nom
+    + string telephone
+    + string email
+    + string password
+    + string avatar
+    + string adresse
+    + int role_id
+    + string Statut
+    + inscription()
+    + connexion()
+    + recup_password()
 }
 
+Client <-- Annonce
+Commercial <-- Annonce
+User <-- Faq_question
+User <-- Freelance
+User <-- Client
+User <-- Admin
+User <-- Commercial
 
-
-class Project{
-    +string name
-    +text description
+class Faq_question{
+  +text question    
+  +text reponse    
 }
 
-Project "1" <-- "1" Roadmap
-Project "1" <-- "*" Team
-Project "1" <-- "*" Besoin_fonctionnel
+class Annonce{
+    + int user_id
+    + text description
+    + string ville
+    + boolean statut
+    + publier_annonce()
+    + renouveller_annonce()
+    + generer_contrat()
+    + postuler()
+    
+}
+Annonce <-- RDV
+Annonce <-- Contrat
+Annonce <-- Postulant
+Annonce <-- Domaine
 
+class RDV{
+    + int annonce_id
+    + int user_id
+    + int freelance_id
+    + int commercial_id
+    + date date_reunion
+    + string lieu_reunion
+    + string heure_reunion
+    + demander_rdv()
+}
+class Commentaire{
+    + int user_id
+    + int contrat_id
+    + int freelance_id
+    + string contenu
+    + boolean valid
+}
+class Contrat{
+    + int user_id
+    + int freelance_id
+    + string montant
+    + string statut
+    + string date_debut
+    + string date_fin
+}
+Contrat <-- Note
+Contrat <-- Commentaire
 
-class Besoinfonctionnel{
-    +int projet_id
-    +string name
-    +string acteur
-    +string prerequis
-    +text description
+class Note{
+    + int contrat_id
+    + int freelance_id
+    + string note
+}
+class Postulant{
+    + int annonce_id
+    + int freelance_id
 }
 
-Besoinfonctionnel "1" <-- "*" Acteur
-
-class Acteur{
-    String name
+class Freelance {
+    +int user_id
+    +string iban
+    +string siret
+    +text profil
 }
 
-class Roadmap{
-    +int project_id
-    +string client_name
-    +string client_name
-    +string chief
-    +date start_date
-    +date end_date
-}
-Roadmap <-- Sprint
+Freelance <-- Experience
+Freelance <-- Formation
+Freelance <-- Competence
 
-class Sprint{
-    +int roadmap_id
-    +int order
-    +string name
-    +text description
-    +date start_date
-    +date end_date
-}
-Sprint <-- Jalon
-
-class Jalon{
-    +int sprint_id
-    +int order
-    +text description
-    +date start_date
-    +date end_date
-    +int duration
-    +int avancement
-}
-Jalon <-- Attribute
-
-class Team{
-    +string name
-    +text description
+class Experience {
+  +int freelance_id
+  +string nom
+  +text description 
+  +date date_debut
+  +date date_fin
 }
 
-class Attribute{
-    +int jalon_id
-    +int team_id
+class Domaine {
+  +string nom
+  +text description 
+}
+Domaine <-- Metier
+
+class Metier {
+  +int domaine_id
+  +string nom
+  +text description 
+  +boolean supervise
+}
+
+class Competence {
+  +int freelance_id
+  +string competence
+  +string niveau
+  +text description 
+}
+
+class Formation {
+  +int freelance_id
+  +string Ecole
+  +string diplome
+  +string date_debut
+  +string date_fin
+  +text description 
 }
 
 
