@@ -22,16 +22,14 @@
                                     <textarea wire:model.defer="description" data-bs-toggle="autosize" rows="7" placeholder="Description" class="form-control"></textarea>
                                 </div>
                                 <div class="mb-3 col-md-8">
-                                    <label class="form-label">Contenu</label>
+                                    <label class="form-label">Contenu  <span class="text-green cursor-pointer" onclick="copy()">Copy</span> </label>
                                     <textarea wire:model="content" rows="10" placeholder="Contenu du diagramme" class="form-control"></textarea>
-                                </div>
-                            </div>
 
-                            <div>
-                                <div class="btn-list justify-content-between">
-                                    <button wire:click="delete_diagramme" class="btn btn-danger">Supprimer</button>
-                                    <button wire:click="$set('diagramme_id',0)" class="btn btn-secondary">Fermer</button>
-                                    <button wire:click="update_diagramme" class="btn btn-primary">Modifier</button>
+                                    <div class="btn-list justify-content-between mt-2">
+                                        <button wire:click="delete_diagramme" class="btn btn-danger">Supprimer</button>
+                                        <button wire:click="$set('diagramme_id',0)" class="btn btn-secondary">Fermer</button>
+                                        <button wire:click="update_diagramme" class="btn btn-primary">Modifier</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +78,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Contenu</label>
-                        <textarea wire:model.defer="content" data-bs-toggle="autosize" rows="7" placeholder="Contenu du diagramme" class="form-control"></textarea>
+                        <textarea wire:model.defer="content" id="contenu" data-bs-toggle="autosize" rows="7" placeholder="Contenu du diagramme" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -90,4 +88,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('livewire:load', function () {
+            function copy() {
+            /* Get the text field */
+            var copyText = document.getElementById("contenu");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+
+            /* Alert the copied text */
+            alert("Contenu copié: " + copyText.value);
+            }
+        })
+    </script>
 </div>
