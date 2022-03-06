@@ -1,28 +1,15 @@
-<div class="row">
+<div class="row accordion" id="road_accordion">
     @if ($roadmap)
-        {{-- <div class="col-md-12 mb-2">
-            <div class="card card-sm">
-                <div class="card-header">
-                    <h3 class="card-title">Roadmap</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <div>Nom du projet :</div> <div> {{ $roadmap->name }} </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <div>Client :</div> <div> {{ $roadmap->client }} </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div> --}}
-
         @forelse ($roadmap->sprints as $sprint)
             <div class="col-md-12 mb-2">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Sprint {{ $sprint->order }} </h3>
+                        <h3 class="card-title">
+                            <button class="btn btn-icon btn-outline-secondary btn-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <polyline points="6 9 12 15 18 9"></polyline> </svg>
+                            </button>
+                            Sprint {{ $sprint->order }}
+                        </h3>
                         <div class="card-actions">
                             <div class="btn-list">
                                 {{-- <a  data-bs-toggle="modal" data-bs-target="#modalJalon" class="btn btn-icon btn-primary"> --}}
@@ -39,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-responsive">
+                    <table class="table table-responsive" >
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -87,6 +74,7 @@
 
                             @endif
                             @foreach ($sprint->jalons as $key => $jalon)
+
                                 @if ($jalon_id == $jalon->id)
                                     <tr>
                                         <td colspan="7">
@@ -130,7 +118,7 @@
                                     </tr>
                                 @else
                                     <tr>
-                                        <th>{{ $key+1 }}</th>
+                                        <th width=20px class="text-center">{{ $key+1 }}</th>
                                         <td> {{ $jalon->description }} </td>
                                         <td width=50px class="text-center"></td>
                                         <td width=20px class="text-center"> {{ $jalon->avancement }} %</td>

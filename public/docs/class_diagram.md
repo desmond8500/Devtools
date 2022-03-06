@@ -20,7 +20,6 @@ class User{
 
 Client <-- Annonce
 Commercial <-- Annonce
-User <-- Faq_question
 User <-- Freelance
 User <-- Client
 User <-- Admin
@@ -33,9 +32,13 @@ class Faq_question{
 
 class Annonce{
     + int user_id
+    + string objet
     + text description
-    + string ville
+    + string disponibilité
+    + date duree
+    + string tarif
     + boolean statut
+    + date date_expiration
     + publier_annonce()
     + renouveller_annonce()
     + generer_contrat()
@@ -45,7 +48,23 @@ class Annonce{
 Annonce <-- RDV
 Annonce <-- Contrat
 Annonce <-- Postulant
-Annonce <-- Domaine
+Annonce <-- Annonce_metier
+
+class Annonce_metier {
+    + int Annonce_id
+    + int metier_id
+}
+
+class Ville{
+    + int pays_id
+    + string nom
+}
+
+Pays <-- Ville
+
+class Pays{
+    + string nom
+}
 
 class RDV{
     + int annonce_id
@@ -83,6 +102,18 @@ class Note{
 class Postulant{
     + int annonce_id
     + int freelance_id
+}
+
+class Admin{
+    + int user_id
+}
+
+class Client{
+    + int user_id
+}
+
+class Commercial{
+    + int user_id
 }
 
 class Freelance {

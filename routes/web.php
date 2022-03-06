@@ -15,7 +15,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/connexion', [AuthController::class, 'connexion'])->name('connexion');
 Route::post('/forgot_password', [AuthController::class, 'forgot_password'])->name('forgot_password');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware([])->group(function () {
     Route::get('/', Projets::class)->name('index');
     Route::get('/projets', Projets::class)->name('projets');
     Route::get('/projet/{projet_id}', Projet::class)->name('projet');

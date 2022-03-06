@@ -26,7 +26,6 @@ class Roadmap extends Component
                 $this->sprint_order = 1;
             }
         }
-
     }
 
     protected $listeners = [
