@@ -15,6 +15,10 @@ class ToolController extends Controller
             $date2 = strtotime(date('Y-m-d'));
         }
 
+        if($start==null && $end==null){
+            return 0;
+        }
+
         return ($date2 - $date1) / 86400;
     }
 }

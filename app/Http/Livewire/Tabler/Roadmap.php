@@ -36,6 +36,7 @@ class Roadmap extends Component
         'sprintAdded' => 'render',
         'jalon' => 'render',
         'toggle_sprint' => 'render',
+        'reload' => 'render',
     ];
 
     public function render()
@@ -83,16 +84,20 @@ class Roadmap extends Component
 
     public function store_sprint()
     {
+        $name = $this->sprint_order;
+        if ($this->sprint_name) {
+            $name = $this->sprint_name;
+        }
         Sprint::create([
             'roadmap_id' => $this->roadmap->id,
-            'name' => $this->sprint_name,
+            'name' => $name,
             'description' => $this->sprint_description,
             'order' => $this->sprint_order,
             'start_date' => $this->sprint_start_date,
             'end_date' => $this->sprint_end_date
         ]);
         $this->emit('sprintAdded');
-        $this->reset('sprint_name', 'sprint_description', 'sprint_order', 'sprint_start_date', 'sprint_end_date');
+        $this->reset('sprint_name', 'sprint_description', 'sprint_start_date', 'sprint_end_date');
     }
     public function edit_sprint($id)
     {
@@ -114,12 +119,15 @@ class Roadmap extends Component
         $sprint->end_date       = $this->sprint_end_date;
 
         $sprint->save();
-
-        $this->reset('sprint_id', 'sprint_name', 'sprint_description', 'sprint_order', 'sprint_start_date', 'sprint_end_date');
+        $this->emit('reload');
+        $this->reset('sprint_id', 'sprint_name', 'sprint_description', 'sprint_start_date', 'sprint_end_date');
     }
     public function delete_sprint($id){
         $sprint = Sprint::find($id);
-        $sprint->delete();
+        if (!$sprint->jalons->count()) {
+            $sprint->delete();
+        }
+        $this->emit('jalon');
     }
 
     public function sprint_show($id)
@@ -140,6 +148,16 @@ class Roadmap extends Component
     public $jalon_order, $jalon_description, $jalon_start_date, $jalon_end_date, $jalon_duration, $jalon_avancement;
     public $jalon_id=0, $jalon_form=0, $jalon_count=0;
 
+    public function add_jalon($id)
+    {
+        $this->sprint_id = $id;
+        $this->jalon_form = 1;
+    }
+    public function close_jalon()
+    {
+        $this->reset('sprint_id', 'jalon_form');
+    }
+
     public function store_jalon($id)
     {
         Jalon::create([
@@ -151,8 +169,8 @@ class Roadmap extends Component
             'duration' => $this->jalon_duration,
             'avancement' => $this->jalon_avancement ?? 0,
         ]);
+        $this->reset('sprint_id', 'jalon_form', 'jalon_order', 'jalon_description', 'jalon_start_date', 'jalon_end_date', 'jalon_duration', 'jalon_avancement');
         $this->emit('jalon');
-        $this->reset('sprint_id', 'jalon_order', 'jalon_description', 'jalon_start_date', 'jalon_end_date', 'jalon_duration', 'jalon_avancement');
     }
     public function edit_jalon($id)
     {
