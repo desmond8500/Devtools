@@ -41,7 +41,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">
-                                    <a href="{{ $diagramme->link }}" target="_blank">{{ $diagramme->name }}</a>
+                                    {{ $diagramme->name }}
                                 </h3>
                                 <p class="card-subtitle">{{ $diagramme->description }}</p>
                             </div>
