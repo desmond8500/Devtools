@@ -58,7 +58,7 @@ class Projet extends Component
         ]);
 
         $this->reset('roadmap_name', 'roadmap_client', 'roadmap_chief', 'roadmap_date');
-        $this->emit('roadmapAdded');
+        $this->emitRo('Roadmap','roadmapAdded');
     }
 
 

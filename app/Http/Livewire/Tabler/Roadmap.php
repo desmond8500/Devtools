@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler;
 
 use App\Models\Jalon;
+use App\Models\Membre;
 use App\Models\Roadmap as ModelsRoadmap;
 use App\Models\Sprint;
 use App\Models\Team;
@@ -32,6 +33,7 @@ class Roadmap extends Component
         'roadmapAdded' => 'render',
         'sprintAdded' => 'render',
         'jalon' => 'render',
+        'toggle_sprint' => 'render',
     ];
 
     public function render()
@@ -73,7 +75,7 @@ class Roadmap extends Component
 
     // Sprint
 
-    public $sprint_name, $sprint_description, $sprint_order, $sprint_start_date, $sprint_end_date;
+    public $sprint_name, $sprint_description, $sprint_order, $sprint_start_date, $sprint_end_date, $sprint_show;
     public $sprint_id=0, $sprint_form=0;
 
     public function store_sprint()
@@ -115,6 +117,19 @@ class Roadmap extends Component
     public function delete_sprint($id){
         $sprint = Sprint::find($id);
         $sprint->delete();
+    }
+
+    public function sprint_show($id)
+    {
+        $sprint = Sprint::find($id);
+
+        if ($sprint->show) {
+            $sprint->show = 0;
+        } else {
+            $sprint->show = 1;
+        }
+        $sprint->save();
+        $this->emit('toggle_sprint');
     }
 
     // Jalon
@@ -174,6 +189,21 @@ class Roadmap extends Component
         $this->sprint_id = $id;
         $sprint = Sprint::find($id);
         $this->jalon_order = $sprint->jalons->count() +1;
+    }
+
+    public function add_member($jalon_id, $team_id)
+    {
+        $member = Membre::create([
+            'jalon_id'=> $jalon_id,
+            'team_id'=> $team_id,
+        ]);
+        $this->emit('jalon');
+    }
+    public function delete_member($id)
+    {
+        $member = Membre::find($id);
+        $member->delete();
+        $this->emit('jalon');
     }
 
 }

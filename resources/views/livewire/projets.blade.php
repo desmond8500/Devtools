@@ -55,10 +55,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                            wire:click='store'>Ajouter</button>
-
-                            <button class="btn btn-primary" wire:click="close">fermer</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click='store'>Ajouter</button>
                     </div>
                 </div>
             </div>

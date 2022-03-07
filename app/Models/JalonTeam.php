@@ -7,22 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Jalon extends Model
+class JalonTeam extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'sprint_id',
-        'order',
-        'description',
-        'start_date',
-        'end_date',
-        'duration',
-        'avancement',
+        'jalon_id',
+        'team_id',
     ];
 
     public function teams(): HasMany
     {
-        return $this->hasMany(Membre::class);
+        return $this->hasMany(Team::class, 'foreign_key', 'team_id');
     }
 }

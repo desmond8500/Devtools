@@ -16,6 +16,8 @@ class Sprint extends Model
         'order',
         'start_date',
         'end_date',
+        'show',
+        'status'
     ];
 
     public function jalons(): HasMany
