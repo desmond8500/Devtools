@@ -115,7 +115,7 @@
                                                             @endforeach
                                                         </select>
                                                         @foreach ($jalon->teams as $person)
-                                                            <span class="badge bg-blue" wire:click="delete_member('{{ $person->id }}')">{{ $person->get_name($person->team_id) }}</span>
+                                                            <span class="badge bg-blue mb-1" wire:click="delete_member('{{ $person->id }}')">{{ $person->get_name($person->team_id) }}</span>
                                                         @endforeach
 
                                                     </div>
@@ -135,7 +135,7 @@
                                             <td> {{ $jalon->description }} </td>
                                             <td>
                                                 @foreach ($jalon->teams as $person)
-                                                    <span class="badge bg-blue">{{ $person->get_name($person->team_id) }}</span>
+                                                    <span class="badge bg-blue mb-1">{{ $person->get_name($person->team_id) }}</span>
                                                 @endforeach
                                             </td>
                                             <td width=20px class="text-center"> {{ $jalon->avancement }} %</td>
@@ -143,8 +143,7 @@
                                                 <div>{{ $jalon->start_date }}</div>
                                                 <div>{{ $jalon->end_date }}</div>
                                             </td>
-                                            <td width=20px class="text-center"> {{ $jalon->duration }} </td>
-                                            {{-- <td> {{ $jalon->avancement }} </td> --}}
+                                            <td width=20px class="text-center"> {{ $tool->dateDiff($jalon->start_date,$jalon->end_date) }} </td>
                                             <td width=20px>
                                                 <button class="btn btn-icon btn-primary" wire:click="edit_jalon('{{ $jalon->id }}')">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path> <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path> <line x1="16" y1="5" x2="19" y2="8"></line> </svg>

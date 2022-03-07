@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Tabler;
 
+use App\Http\Controllers\ToolController;
 use App\Models\Jalon;
 use App\Models\Membre;
 use App\Models\Roadmap as ModelsRoadmap;
 use App\Models\Sprint;
 use App\Models\Team;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Roadmap extends Component
@@ -40,7 +42,8 @@ class Roadmap extends Component
     {
         return view('livewire.tabler.roadmap',[
             'roadmap' => $this->projet->roadmap,
-            'team' => Team::where('projet_id', $this->projet->id)->get()
+            'team' => Team::where('projet_id', $this->projet->id)->get(),
+            'tool' => new ToolController(),
         ]);
     }
 
@@ -182,6 +185,7 @@ class Roadmap extends Component
     public function delete_jalon(){
         $jalon = Jalon::find($this->jalon_id);
         $jalon->delete();
+        $this->emit('jalon');
     }
 
     public function set_sprint_id($id)
@@ -204,6 +208,14 @@ class Roadmap extends Component
         $member = Membre::find($id);
         $member->delete();
         $this->emit('jalon');
+    }
+
+    public function duree($start, $end)
+    {
+       return ToolController::dateDiff($start, $end);
+        // $carbon = Carbon::createFromDate($start);
+
+        // return $carbon;
     }
 
 }
