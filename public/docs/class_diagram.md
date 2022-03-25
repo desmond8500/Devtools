@@ -10,11 +10,11 @@ class User{
     + string email
     + string password
     + string avatar
-    + string adresse
+    + int adresse_id
     + int role_id
     + string Statut
-    + inscription()
-    + connexion()
+    + freelance()
+    + annonces()
     + recup_password()
 }
 
@@ -28,6 +28,7 @@ User <-- Commercial
 class Faq_question{
   + text question    
   + text reponse    
+  + int ordre    
 }
 
 class Annonce{
@@ -36,7 +37,7 @@ class Annonce{
     + text description
     + string disponibilité
     + date duree
-    + string tarif
+    + float tarif
     + boolean statut
     + date date_expiration
     + publier_annonce()
@@ -134,6 +135,7 @@ class Freelance {
     + string iban
     + string siret
     + text profil
+    + float tjm
 }
 
 Freelance <-- Experience
@@ -170,6 +172,7 @@ class Formation {
 class Domaine {
   + string nom
   + text description 
+  + boolean supervise
 }
 Domaine <-- Metier
 
@@ -177,7 +180,6 @@ class Metier {
   + int domaine_id
   + string nom
   + text description 
-  + boolean supervise
 }
 
 ```

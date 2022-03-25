@@ -33,11 +33,11 @@
                         <div class="row card-body">
                             <div class="form-group col-md-6">
                                 <label class="form-label">Nom du jalon </label>
-                                <input type="text" wire:model.defer="jalon_name" class="form-control" placeholder="Nom ou description du jalon">
+                                <input type="text" wire:model.defer="jalon_description" class="form-control" placeholder="Nom ou description du jalon">
 
-                                <label class="form-label">Description</label>
+                                {{-- <label class="form-label">Description</label>
                                 <textarea wire:model.defer="jalon_description" class="form-control" placeholder="Description du jalon" cols="30"
-                                    rows="3"></textarea>
+                                    rows="3"></textarea> --}}
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label">Date de début </label>
@@ -51,7 +51,7 @@
                                 <input type="number" wire:model.defer="jalon_order" class="form-control mb-3">
 
                                 <button type="button" class="btn btn-secondary" wire:click="close_jalon">Fermer</button>
-                                <button wire:click="store_jalon" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le Jalon</button>
+                                <button wire:click="store_jalon('{{ $sprint->id }}')" class="btn btn-primary" data-bs-dismiss="modal">Ajouter le Jalon</button>
                             </div>
                         </div>
                     @endif
